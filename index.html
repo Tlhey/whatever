@@ -1,1428 +1,227 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Tlhey</title><meta name="author" content="Tlhey"><meta name="copyright" content="Tlhey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Tlhey">
+<meta property="og:url" content="https://tlhey.github.io/whatever/index.html">
+<meta property="og:site_name" content="Tlhey">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:image" content="https://tlhey.github.io/whatever/img/Avatar.jpg">
+<meta property="article:author" content="Tlhey">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+<meta name="twitter:image" content="https://tlhey.github.io/whatever/img/Avatar.jpg"><link rel="shortcut icon" href="/whatever/img/favicon.png"><link rel="canonical" href="https://tlhey.github.io/whatever/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/whatever/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
       
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/whatever/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Tlhey',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/Background.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/whatever/img/Avatar.jpg" onerror="this.onerror=null;this.src='/whatever/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/whatever/archives/"><div class="headline">Articles</div><div class="length-num">34</div></a><a href="/whatever/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/whatever/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/whatever/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/whatever/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/whatever/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/whatever/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: transparent;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/whatever/"><img class="site-icon" src="/whatever/img/Navi.jpg" alt="Logo"><span class="site-name">Tlhey</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/whatever/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/whatever/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/whatever/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/whatever/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/whatever/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Tlhey</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/whatever/2025/04/01/2025-04-01-Linux-server-proxy-issue/" title="2025-04-01-Linux-server-proxy-issue"><img class="post-bg" src="/whatever/img/bc12.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-04-01-Linux-server-proxy-issue"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/04/01/2025-04-01-Linux-server-proxy-issue/" title="2025-04-01-Linux-server-proxy-issue">2025-04-01-Linux-server-proxy-issue</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-04-01T19:23:11.000Z" title="Created 2025-04-01 15:23:11">2025-04-01</time></span></div><div class="content">今天试图解决国内服务器网络连接国外网站失败问题。 我是mac m3 pro芯片。 首先在linux服务器上安装aria2。 aria2 下载如果有sudo权限，就很简单。 1sudo apt install aria2  如果没有，aria2最新版本可查看：https://github.com/aria2/aria2/releases/  可以将release-1.37.0换成最新版本 太长不看简略版 123456789101112131415cd ~wget https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0.tar.gztar -xzvf aria2-1.37.0.tar.gzcd aria2-1.37.0./configure --prefix=$HOME/.localmake -j$(nproc)       # 使用多核加速编译make install          # 安装到 ~/.localecho &#x27;export...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/whatever/2025/04/01/2025-04-01-mt-implementation-log/" title="2025-04-01-mt-implementation-log"><img class="post-bg" src="/whatever/img/bc10.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-04-01-mt-implementation-log"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/04/01/2025-04-01-mt-implementation-log/" title="2025-04-01-mt-implementation-log">2025-04-01-mt-implementation-log</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-04-01T16:58:02.000Z" title="Created 2025-04-01 12:58:02">2025-04-01</time></span></div><div class="content">123  Folder directory problemThe structure of tornike’s repo (derive from config):  MusicLDM-Ext  lightning_logs multichannel_slakh (project check points) musicldm_checkpoints vae-ckpt.ckpt hifigan-ckpt.ckpt clap-ckpt.pt     data slakh2100  train (https://github.com/gladia-research-group/multi-source-diffusion-models/blob/main/data/README.md) validation test  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/whatever/2025/03/09/2025-03-08-medication/" title="2025-03-08 medication"><img class="post-bg" src="/whatever/img/bc9.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-03-08 medication"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/03/09/2025-03-08-medication/" title="2025-03-08 medication">2025-03-08 medication</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-03-09T10:58:05.000Z" title="Created 2025-03-09 06:58:05">2025-03-09</time></span></div><div class="content">Medication 2025-03-07cannot sleep the whole nightfall sleep at 10:00 - 17:00HydroOXYzine 1 piece at 1:00 am and fall sleephad a delivery for dinner, watch tv series, catch the rat🐀, feel less attracted to social medias and short vedios than before. 2025-03-08sleep 1:00 - 14:00Prozac at 15:00HydroOXYzine 1 piece at 22:00sleep between 22:00 - 3:00Chilled during the time awake. Hang out with roommate at 16:00, then go exercise.Tried to study but cannot concentrate, cannot control mind floating...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/whatever/2025/02/15/2025-02-15-DS/" title="2025-02-15-DS"><img class="post-bg" src="/whatever/img/bc12.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-02-15-DS"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/02/15/2025-02-15-DS/" title="2025-02-15-DS">2025-02-15-DS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-02-15T18:17:25.000Z" title="Created 2025-02-15 13:17:25">2025-02-15</time></span></div><div class="content">123  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/whatever/2025/01/29/2025-01-29-CV/" title="2025-01-29-CV"><img class="post-bg" src="/whatever/img/bc10.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-01-29-CV"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/01/29/2025-01-29-CV/" title="2025-01-29-CV">2025-01-29-CV</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-29T21:02:37.000Z" title="Created 2025-01-29 16:02:37">2025-01-29</time></span></div><div class="content">我觉得教授说的很有道理。 First use simple cases as examples, then gradually increase the difficulty.For example the gradient descent. Use 2 * 2 as example, then others.  U-Net 论文阅读https://github.com/zhixuhao/unet TermsImage segmentation: assign every pixel a label \ MotivationPrevious method:  Ciresan et al. : Purely CNN (?) slow: redundancy of patches trade-off between localization accuracy and the use of context    Propose method:Fully CN:-  pooling op are replaced by upsampling op:  increase the...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/whatever/2025/01/09/2025-01-11-NLP/" title="2025-01-11-NLP"><img class="post-bg" src="/whatever/img/bc9.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-01-11-NLP"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/01/09/2025-01-11-NLP/" title="2025-01-11-NLP">2025-01-11-NLP</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-09T17:25:42.000Z" title="Created 2025-01-09 12:25:42">2025-01-09</time></span></div><div class="content">01&#x2F;09NLP current challenges:  Hallucination Ribustness and safety Interpretability and controllability Reasoning  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/whatever/2025/01/09/2025-01-10-Finance/" title="2025-01-10-Finance"><img class="post-bg" src="/whatever/img/bc12.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-01-10-Finance"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/01/09/2025-01-10-Finance/" title="2025-01-10-Finance">2025-01-10-Finance</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-09T13:39:55.000Z" title="Created 2025-01-09 08:39:55">2025-01-09</time></span></div><div class="content">Prof C. J.Prof电话9193321894 ICPQ: in class pop quizTF:  luca pachioli: father o accounting Big Four Accounting Firms   Deloitte EY (Ernst &amp; Young) KPMG PwC (PricewaterhouseCoopers)  GAAP: Generally Accepted Accounting PrinciplesIFRS: International Financial Reporting Standards Accounting Cycle  Journal Entries Ledger Accounts Trial Balance Adjusted Trial Balance Financial Statements Closing Entries  Accounting EquationAssets &#x3D; Liabilities + Owner’s Equity Accounting EquationAssets...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/whatever/2025/01/08/2025-01-09-Casual-Course/" title="2025-01-09-Casual-Course"><img class="post-bg" src="/whatever/img/bc10.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-01-09-Casual-Course"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/01/08/2025-01-09-Casual-Course/" title="2025-01-09-Casual-Course">2025-01-09-Casual-Course</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-08T15:03:21.000Z" title="Created 2025-01-08 10:03:21">2025-01-08</time></span></div><div class="content">www 01-08Assignments (20%) 2-3人Paper review (15%) 单人Pre (20%) 3 data analysisCasual InferenceIntervention ATE Average Treatment Effect$T\rightarrow Y$$ATE &#x3D; \mathbb{E}[Y(t&#x3D;1) - Y(t&#x3D;0)] &#x3D; \mathbb{E}[Y(1) - Y(0)]$only one of Y(1) or Y(0) is observed (Random) $T\perp Y(1), Y(0)$ T: treatment assignment$ATE &#x3D; \mathbb{E}[Y(1)] -\mathbb{E}[Y(0)]$$&#x3D; \mathbb{E}[Y(1) | T&#x3D;1] - \mathbb{E}[Y(0) | T&#x3D;0]$ Problem: randomized data samples,  DO operatorDAG: Directed...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/whatever/2025/01/08/2025-01-08-Generative-Models/" title="2025-01-08-Generative-Models"><img class="post-bg" src="/whatever/img/bc9.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-01-08-Generative-Models"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/01/08/2025-01-08-Generative-Models/" title="2025-01-08-Generative-Models">2025-01-08-Generative-Models</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-08T14:29:17.000Z" title="Created 2025-01-08 09:29:17">2025-01-08</time></span></div><div class="content"> </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/whatever/2025/01/06/2025-01-06-Update-on-RTIIP/" title="2025-01-06-Update-on-RTIIP"><img class="post-bg" src="/whatever/img/bc12.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-01-06-Update-on-RTIIP"></a></div><div class="recent-post-info"><a class="article-title" href="/whatever/2025/01/06/2025-01-06-Update-on-RTIIP/" title="2025-01-06-Update-on-RTIIP">2025-01-06-Update-on-RTIIP</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-06T09:53:24.000Z" title="Created 2025-01-06 04:53:24">2025-01-06</time></span></div><div class="content">123 Real-Time Instrumental Improvisation Project (RTIIP)live musical system capable of real time music accompaniment Exsit works:Multi-Track MusicLDMDiff-A-Riff Python ( Slow for diffusion models )MAX&#x2F;MSP ( Lack ML generation API)OSC ( trans between python and max&#x2F;msp) # open sound control MusicLDMhttps://arxiv.org/pdf/2308.01546 CLAParxiv1: https://arxiv.org/pdf/2206.04769 （👏 22.06 microsoft）repo: https://github.com/microsoft/CLAP arxiv2: https://arxiv.org/pdf/2211.06687...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/whatever/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/whatever/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/whatever/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/whatever/img/Avatar.jpg" onerror="this.onerror=null;this.src='/whatever/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Tlhey</div><div class="author-info-description"></div><div class="site-data"><a href="/whatever/archives/"><div class="headline">Articles</div><div class="length-num">34</div></a><a href="/whatever/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/whatever/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/whatever/2025/04/01/2025-04-01-Linux-server-proxy-issue/" title="2025-04-01-Linux-server-proxy-issue"><img src="/whatever/img/bc12.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-04-01-Linux-server-proxy-issue"/></a><div class="content"><a class="title" href="/whatever/2025/04/01/2025-04-01-Linux-server-proxy-issue/" title="2025-04-01-Linux-server-proxy-issue">2025-04-01-Linux-server-proxy-issue</a><time datetime="2025-04-01T19:23:11.000Z" title="Created 2025-04-01 15:23:11">2025-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/whatever/2025/04/01/2025-04-01-mt-implementation-log/" title="2025-04-01-mt-implementation-log"><img src="/whatever/img/bc10.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-04-01-mt-implementation-log"/></a><div class="content"><a class="title" href="/whatever/2025/04/01/2025-04-01-mt-implementation-log/" title="2025-04-01-mt-implementation-log">2025-04-01-mt-implementation-log</a><time datetime="2025-04-01T16:58:02.000Z" title="Created 2025-04-01 12:58:02">2025-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/whatever/2025/03/09/2025-03-08-medication/" title="2025-03-08 medication"><img src="/whatever/img/bc9.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-03-08 medication"/></a><div class="content"><a class="title" href="/whatever/2025/03/09/2025-03-08-medication/" title="2025-03-08 medication">2025-03-08 medication</a><time datetime="2025-03-09T10:58:05.000Z" title="Created 2025-03-09 06:58:05">2025-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/whatever/2025/02/15/2025-02-15-DS/" title="2025-02-15-DS"><img src="/whatever/img/bc12.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-02-15-DS"/></a><div class="content"><a class="title" href="/whatever/2025/02/15/2025-02-15-DS/" title="2025-02-15-DS">2025-02-15-DS</a><time datetime="2025-02-15T18:17:25.000Z" title="Created 2025-02-15 13:17:25">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/whatever/2025/01/29/2025-01-29-CV/" title="2025-01-29-CV"><img src="/whatever/img/bc10.jpeg" onerror="this.onerror=null;this.src='/whatever/img/404.jpg'" alt="2025-01-29-CV"/></a><div class="content"><a class="title" href="/whatever/2025/01/29/2025-01-29-CV/" title="2025-01-29-CV">2025-01-29-CV</a><time datetime="2025-01-29T21:02:37.000Z" title="Created 2025-01-29 16:02:37">2025-01-29</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/whatever/tags/tools/" style="font-size: 1.1em; color: #999">tools</a> <a href="/whatever/tags/music/" style="font-size: 1.1em; color: #999">music</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      <a class="card-more-btn" href="/whatever/archives/"
+            title="View More">
+            <i class="fas fa-angle-right"></i>
+          </a>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-2025-04-01-Linux-server-proxy-issue" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/04/01/2025-04-01-Linux-server-proxy-issue/" class="article-date">
-  <time class="dt-published" datetime="2025-04-01T19:23:11.000Z" itemprop="datePublished">2025-04-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/04/01/2025-04-01-Linux-server-proxy-issue/">2025-04-01-Linux-server-proxy-issue</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+    <ul class="card-archive-list">
       
-        <p>今天试图解决国内服务器网络连接国外网站失败问题。</p>
-<p>我是mac m3 pro芯片。</p>
-<p>首先在linux服务器上安装aria2。</p>
-<h2 id="aria2-下载"><a href="#aria2-下载" class="headerlink" title="aria2 下载"></a>aria2 下载</h2><p>如果有sudo权限，就很简单。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install aria2</span><br></pre></td></tr></table></figure>
-
-<p>如果没有，<br>aria2最新版本可查看：<a target="_blank" rel="noopener" href="https://github.com/aria2/aria2/releases/">https://github.com/aria2/aria2/releases/</a>  可以将release-1.37.0换成最新版本</p>
-<p>太长不看简略版</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">wget https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0.tar.gz</span><br><span class="line">tar -xzvf aria2-1.37.0.tar.gz</span><br><span class="line">cd aria2-1.37.0</span><br><span class="line"></span><br><span class="line">./configure --prefix=$HOME/.local</span><br><span class="line"></span><br><span class="line">make -j$(nproc)       # 使用多核加速编译</span><br><span class="line">make install          # 安装到 ~/.local</span><br><span class="line"></span><br><span class="line">echo &#x27;export PATH=&quot;$HOME/.local/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc     # 立即生效</span><br><span class="line"></span><br><span class="line">aria2c --version</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-<h2 id="m3-microsocks-下载"><a href="#m3-microsocks-下载" class="headerlink" title="m3 microsocks 下载"></a>m3 microsocks 下载</h2><p>(<del>我也不知道为什么只能ssh</del>)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:rofl0r/microsocks.git</span><br><span class="line">cd microsocks</span><br></pre></td></tr></table></figure>
-
-<p>因为我是m3芯片所以make会不同<br><code>make CC=clang</code><br>如果是x86之类，这样就可以<br><code>make</code></p>
-<p>运行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./microsocks -p 1080</span><br></pre></td></tr></table></figure>
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2025/04/">
+            <span class="card-archive-list-date">
+              April 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/04/01/2025-04-01-Linux-server-proxy-issue/" data-id="cm9bnagt0001wzc3ddo0nd80h" data-title="2025-04-01-Linux-server-proxy-issue" class="article-share-link"><span class="fa fa-share">Share</span></a>
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2025/03/">
+            <span class="card-archive-list-date">
+              March 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
       
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2025/02/">
+            <span class="card-archive-list-date">
+              February 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
       
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2025/01/">
+            <span class="card-archive-list-date">
+              January 2025
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
       
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-04-01-mt-implementation-log" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/04/01/2025-04-01-mt-implementation-log/" class="article-date">
-  <time class="dt-published" datetime="2025-04-01T16:58:02.000Z" itemprop="datePublished">2025-04-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/04/01/2025-04-01-mt-implementation-log/">2025-04-01-mt-implementation-log</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2024/12/">
+            <span class="card-archive-list-date">
+              December 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
       
-        <p>123</p>
-<ol>
-<li>Folder directory problem<br>The structure of tornike’s repo (derive from config):</li>
-</ol>
-<p>MusicLDM-Ext</p>
-<ul>
-<li>lightning_logs<ul>
-<li>multichannel_slakh (project check points)</li>
-<li>musicldm_checkpoints<ul>
-<li>vae-ckpt.ckpt</li>
-<li>hifigan-ckpt.ckpt</li>
-<li>clap-ckpt.pt</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>data<ul>
-<li>slakh2100 <ul>
-<li>train (<a target="_blank" rel="noopener" href="https://github.com/gladia-research-group/multi-source-diffusion-models/blob/main/data/README.md">https://github.com/gladia-research-group/multi-source-diffusion-models/blob/main/data/README.md</a>)</li>
-<li>validation</li>
-<li>test  <!-- - Audiostock-10k-16khz </li>
-<li>test_split_audio_content_analysis.json<br>  -label –&gt;</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>src</li>
-<li>config<ul>
-<li>multichannel_LDM</li>
-<li>musicldm_audiostock10k</li>
-<li>musicldm_soundcloud</li>
-</ul>
-</li>
-<li>train_musicldm.py</li>
-</ul>
-<ol start="2">
-<li>env<br>the given musicldm<br> mamba is a good tool for env management (like conda)</li>
-</ol>
-<p>nohup mamba env create -f musicldm_env.yml -y –no-builds &gt; install_log.txt 2&gt;&amp;1 &amp;<br>nohup使用方法<br>ps aux | grep mamba</p>
-<p>torch安装<br><a target="_blank" rel="noopener" href="https://pytorch.org/get-started/previous-versions/">https://pytorch.org/get-started/previous-versions/</a></p>
-<p>（1）musicldm_env是没有版本号的，只有torch等和原来相同。问题是transformers之类的一些包过于新，不兼容。<br>（2）目前是去掉哈希值micromamba 安装<br>nohup micromamba env create -f musicldm_env_clean.yml -y &gt; install_log.txt 2&gt;&amp;1 &amp;<br>nohup micromamba env update -f musicldm_env_clean.yml -y &gt; install_log.txt 2&gt;&amp;1 &amp;<br>error 1: torchlibrosa&#x3D;&#x3D;0.9.2 无法安装<br>从yaml中去掉，手动装</p>
-<ul>
-<li>正在 micromamba update</li>
-<li>手动装 torchlibrosa&#x3D;&#x3D;0.9.2</li>
-</ul>
-
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2024/11/">
+            <span class="card-archive-list-date">
+              November 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/04/01/2025-04-01-mt-implementation-log/" data-id="cm9bnagpt000zzc3d8k0wglt8" data-title="2025-04-01-mt-implementation-log" class="article-share-link"><span class="fa fa-share">Share</span></a>
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2024/10/">
+            <span class="card-archive-list-date">
+              October 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
       
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/whatever/archives/2024/09/">
+            <span class="card-archive-list-date">
+              September 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
       
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-03-08-medication" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/03/09/2025-03-08-medication/" class="article-date">
-  <time class="dt-published" datetime="2025-03-09T10:58:05.000Z" itemprop="datePublished">2025-03-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/03/09/2025-03-08-medication/">2025-03-08 medication</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Medication</p>
-<p>2025-03-07<br>cannot sleep the whole night<br>fall sleep at 10:00 - 17:00<br>HydroOXYzine 1 piece at 1:00 am and fall sleep<br>had a delivery for dinner, watch tv series, catch the rat🐀, feel less attracted to social medias and short vedios than before.</p>
-<p>2025-03-08<br>sleep 1:00 - 14:00<br>Prozac at 15:00<br>HydroOXYzine 1 piece at 22:00<br>sleep between 22:00 - 3:00<br>Chilled during the time awake. Hang out with roommate at 16:00, then go exercise.<br>Tried to study but cannot concentrate, cannot control mind floating to other things.<br>Really cannot concentrate, even when watch tv series. Less interested in phones and thinking. </p>
-<p>2025-03-09<br>Prozac at 6:00.<br>wake up at 3;00 and cannot sleep.<br>problem with concentration and negative thoughts comes back</p>
-<p>23:00 HydroOXYzine, fall sleep at 2:00 </p>
-<p>2025-03-10<br>sleep 2:00- 15:00<br>Prozac at 15:00<br>24:00 HydroOXYzine</p>
-<p>2025-03-11<br>sleep last night 22:00-24:00, 2:00 - 10:50<br>Prozac at 11:00</p>
-<p>懒鬼。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/09/2025-03-08-medication/" data-id="cm9bnagq1001bzc3d6sos1n0n" data-title="2025-03-08 medication" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-02-15-DS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/02/15/2025-02-15-DS/" class="article-date">
-  <time class="dt-published" datetime="2025-02-15T18:17:25.000Z" itemprop="datePublished">2025-02-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/02/15/2025-02-15-DS/">2025-02-15-DS</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>123</p>
-<!-- 有些音声的剧情实在有点太尴尬了，像是脑子不太好的样子。能不能来个好点的稿子。
-
-人类xp多样性。https://space.bilibili.com/2118525722
-lampyrid：剧情非常牛逼。男主非常聪明和撩人。声音也很甜。清水剧情。适合睡觉。
-https://soundgasm.net/u/AntiquaVA/M4F-Stop-trying-to-make-me-jealous-brat-You-know-you-belong-to-me
-Antique 剧情也牛逼。
-soundgasm.net 压迫感比较强？有点黄？ -->
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/15/2025-02-15-DS/" data-id="cm9bnagpz0015zc3ddcwzfn0m" data-title="2025-02-15-DS" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-01-29-CV" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/29/2025-01-29-CV/" class="article-date">
-  <time class="dt-published" datetime="2025-01-29T21:02:37.000Z" itemprop="datePublished">2025-01-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/29/2025-01-29-CV/">2025-01-29-CV</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>我觉得教授说的很有道理。 First use simple cases as examples, then gradually increase the difficulty.<br>For example the gradient descent. Use 2 * 2 as example, then others. </p>
-<h2 id="U-Net-论文阅读"><a href="#U-Net-论文阅读" class="headerlink" title="U-Net 论文阅读"></a>U-Net 论文阅读</h2><p><a target="_blank" rel="noopener" href="https://github.com/zhixuhao/unet">https://github.com/zhixuhao/unet</a></p>
-<h3 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h3><p>Image segmentation: assign every pixel a label \</p>
-<h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>Previous method:</p>
-<ul>
-<li>Ciresan et al. : Purely CNN (?)<ul>
-<li>slow: redundancy of patches</li>
-<li>trade-off between localization accuracy and the use of context</li>
-</ul>
-</li>
-</ul>
-<h3 id="Propose-method"><a href="#Propose-method" class="headerlink" title="Propose method:"></a>Propose method:</h3><h2 id="Fully-CN-pooling-op-are-replaced-by-upsampling-op-increase-the-resolution"><a href="#Fully-CN-pooling-op-are-replaced-by-upsampling-op-increase-the-resolution" class="headerlink" title="Fully CN:-  pooling op are replaced by upsampling op:  increase the resolution"></a>Fully CN:<br>-  pooling op are replaced by upsampling op:  increase the resolution</h2><h2 id="excessive-Date-Augmentation-elastic-deformation"><a href="#excessive-Date-Augmentation-elastic-deformation" class="headerlink" title="(excessive) Date Augmentation: elastic deformation"></a>(excessive) Date Augmentation: elastic deformation</h2><h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><ul>
-<li>Pixel error: compare 2 pic</li>
-<li>Rand Error</li>
-</ul>
-<h2 id="期末"><a href="#期末" class="headerlink" title="期末"></a>期末</h2><p>吗的，没有认真听过一节课。我真恶心。<br>以下是期末复习计划： 1.先把所有的作业看懂。然后理一下作业里的知识点和公式。不能带cheatsheeet所以玩啦<br>cv复习技巧</p>
-<ol>
-<li>以作业为主。把作业每题都手作一遍。</li>
-<li>看讲义。讲义里很多重要的公式（不要看太细，重点看作业里出现的）</li>
-<li>考完试把cv的作业都补一遍。</li>
-</ol>
-<p>感觉要考quiz的原题。可能要看一遍，不然这门课就完了。<br>复习微积分，线性代数。</p>
-<h2 id="hw-1"><a href="#hw-1" class="headerlink" title="hw 1"></a>hw 1</h2><p>exam style problem:<br>1, 2, 3.1</p>
-<h3 id="1-cor-conv"><a href="#1-cor-conv" class="headerlink" title="1. cor&#x2F;conv"></a>1. cor&#x2F;conv</h3><p>Correlation:<br>correlation coefficient<br>correlation formula at position $i &#x3D; \sum_{j&#x3D;0}^{k-1} I[i + j] \cdot H[j]$</p>
-<p>convolution:$i &#x3D; \sum_{j&#x3D;0}^{k-1} I[i - j] \cdot H[j]$<br>full&#x2F;valid&#x2F;same<br>大小 valid &lt; same &lt; full</p>
-<h3 id="2-smoothing"><a href="#2-smoothing" class="headerlink" title="2. smoothing"></a>2. smoothing</h3><p>gaussian(u, v) &#x3D;def&#x3D; e…<br>seperability与简便计算</p>
-<h3 id="2-differentiation"><a href="#2-differentiation" class="headerlink" title="2. differentiation"></a>2. differentiation</h3><h4 id="def"><a href="#def" class="headerlink" title="def"></a>def</h4><p>区分<br>finite difference: $I_c(r, c) \approx I(r, c + 1) - I(r, c)$<br>central difference: $I_c(r, c) \approx \frac{I(r, c+1) - I(r, c-1)}{2}$</p>
-<h4 id="sobel-filter"><a href="#sobel-filter" class="headerlink" title="sobel filter"></a>sobel filter</h4><p>不要忘记系数啊。。。（normalize系数可以保证亮度正常<br>smoothing $s &#x3D;\frac{1}{4} \begin{bmatrix} 1, 2, 1 \end{bmatrix}^T$<br>differentiation: $d &#x3D;\frac{1}{2} \begin{bmatrix} 1, 0, -1 \end{bmatrix}^T $<br>$v&#x3D;s^Td, h&#x3D;d^Ts$</p>
-<p>sepearable<br><img src="/image.png" alt="alt text">晕</p>
-<h3 id="3-interpolation-x"><a href="#3-interpolation-x" class="headerlink" title="3. interpolation(x)"></a>3. interpolation(x)</h3><p>点的权重为对角正方形的面积<br>bilinear;<br>$\delta a &#x3D; a - \lfloor a \rfloor$, $\delta b &#x3D; b - \lfloor b \rfloor$<br>$\begin{aligned}<br>I(a,b) &amp;&#x3D; I(\lfloor a \rfloor, \lfloor b \rfloor)(1 - \delta a)(1 - \delta b) \<br>&amp;+ I(\lfloor a \rfloor, \lfloor b \rfloor + 1)(1 - \delta a)\delta b \<br>&amp;+ I(\lfloor a \rfloor + 1, \lfloor b \rfloor)\delta a(1 - \delta b) \<br>&amp;+ I(\lfloor a \rfloor + 1, \lfloor b \rfloor + 1)\delta a\delta b<br>\end{aligned}$</p>
-<h2 id="hw-2"><a href="#hw-2" class="headerlink" title="hw 2"></a>hw 2</h2><p>exam problem:<br>1.1 - 1.8 ， 3.1， 4.1<br>给f(x, y)<br>1.1. 求gradient $\nabla f&#x3D;$<br>1.2 stationary point 判定(local max&#x2F;min&#x2F;saddle) D&#x3D; f_xx * f_yy-f_xy^2<br>1.3 ordinary gradient descent<br>1.4 gradient descent with momentum<br>1.5 step of Newton’s method<br>1.6 1. 哪个离真实值更近2. Gauss-Newton method 是否可用<br>1.7 GD的convergence point<br>1.8 数值精度是否影响收敛</p>
-<p>3.1 SGD 手算<br>一个数据点？</p>
-<p>4.1<br>SG和batch</p>
-<p>concepts<br>jacobian: 一阶导, hessian: 二阶导</p>
-<h3 id="notation"><a href="#notation" class="headerlink" title="notation:"></a>notation:</h3><p>risk function(给定f(x)) &#x3D; loss function(未知fx？)<br>first-order gradient descent 只是近似<br>    how to derive step size $\alpha_k$<br>        fix<br>        adam?<br>        momentum<br>    how to determine the local min<br>        line search<br>    terminaltion check<br>    SGD<br>        mini batch average<br>        epoch<br>second-order<br>    Newton’s method<br>        Hessian<br>        positive-definite: asymptotically faster convergence<br>    Newton-Raphson method:<br>        f shuold be convex</p>
-<h3 id="formula"><a href="#formula" class="headerlink" title="formula"></a>formula</h3><p>$\nabla f(x,y)&#x3D; \begin{bmatrix}\frac{\partial f}{\partial x}\[6pt]\frac{\partial f}{\partial y}\end{bmatrix}$</p>
-<p>$H_f(x,y)&#x3D;\begin{bmatrix}\frac{\partial^2 f}{\partial x^2} &amp; \frac{\partial^2 f}{\partial x\partial y}\[6pt]\frac{\partial^2 f}{\partial y\partial x} &amp; \frac{\partial^2 f}{\partial y^2}\end{bmatrix}$</p>
-<p>$p_{k+1} &#x3D; \mu p_k - \alpha_k \nabla f(x_k)$<br>$x_{k+1} &#x3D; x_k + p_{k+1}$<br>$x_k$是位置，$p_k$是momentum，$\alpha_k$是步长，$\nabla f(x_k)$是梯度，<br>since starts with zero velocity,$p_0&#x3D;0$</p>
-<p>$\phi_n$ loss, risk &#x3D; loss function</p>
-<p>$f(\mathbf{z})$ risk<br>$\mathbf{g}_0&#x3D;\nabla f(\mathbf{z}_0)$ gradient<br>$H(\mathbf{z}_0)$ curvature of f near z0<br>$H(\mathbf{z}<em>0) &#x3D; \left[ \frac{\partial^2 f}{\partial z_i \partial z_j} \right]</em>{\mathbf{z} &#x3D; \mathbf{z}_0}$</p>
-<p>Newton Method<br>$f(\mathbf{z}) \approx f(\mathbf{z}_0) + \nabla f(\mathbf{z}_0)^T (\mathbf{z} - \mathbf{z}_0) + \frac{1}{2} (\mathbf{z} - \mathbf{z}_0)^T H(\mathbf{z}_0) (\mathbf{z} - \mathbf{z}_0)$</p>
-<p>$H_0 \Delta \mathbf{z}_0 &#x3D; -\mathbf{g}_0<br>\Rightarrow<br>\Delta \mathbf{z}_0&#x3D;z-z_0 &#x3D; - H_0^{-1} \mathbf{g}_0$</p>
-<p>Newton-rapthon<br>$f(\mathbf{z}) &#x3D; \sum_{n&#x3D;1}^{N} \phi_n^2(\mathbf{z})$</p>
-<h2 id="hw3"><a href="#hw3" class="headerlink" title="hw3"></a>hw3</h2><p>1    2.1-2    3.1<br>1.1 求矩阵row&#x2F;null space的unit vector<br>1.2 x使x^2最小<br>1.3 求x解集<br>1.5 bcce 待公式<br>1.6 Lucas-Kanade tracker</p>
-<h3 id="concept"><a href="#concept" class="headerlink" title="concept"></a>concept</h3><h4 id="BCCE的前提假设"><a href="#BCCE的前提假设" class="headerlink" title="BCCE的前提假设"></a>BCCE的前提假设</h4><p>如果一个点在现实世界中移动，它的亮度在图像中是不会变的<br>公式表达；$a(t) &#x3D; e(x(t), t)\Rightarrow \frac{da(t)}{dt} &#x3D; 0$<br><img src="/2025-01-29-CV/image.png" alt="alt text"><br>$\frac{d}{dt} a(t) &#x3D; 0<br>\Rightarrow<br>\frac{\partial e}{\partial x^T} \cdot \frac{dx}{dt} + \frac{\partial e}{\partial t} &#x3D; 0$</p>
-<p>u: image velocity<br>$\delta x$ displacemen<br>u&#x3D;$\delta x &#x2F; \delta t$, $\delta t \to\infty$</p>
-<p>$u\nabla e(x)&#x2F;|\nabla e(x)|$<br>normal component $\nu &#x3D;def&#x3D;n(x)^{\top}u(x)$</p>
-<h4 id="apreture-probelm"><a href="#apreture-probelm" class="headerlink" title="apreture probelm"></a>apreture probelm</h4><p>BCCE是标量方程， $u &#x3D; (u_x, u_y)^T$是二维，所以只能知道u的方向…<br>Motion Field	真实世界中物体运动在图像上的投影（我们想知道的）<br>Optical Flow	我们从图像中通过亮度变化估计到的速度（我们能观测到的）<br>$\nu(x) &#x3D; \mathbf{n}(x)^T u(x)$ 提督方向*<br>$\nu(x)$ 某个pixel速度沿着这个方向的“可观测分量”。<br>只能知道u的方向。<br>the normal compenet of motion $\nu$</p>
-<p>因为们不能只靠一个像素就估计出完整的运动向量，所以用一个整体的方法去估计图像中所有像素的运动向量（光流）Optical flow<br>1 data term: $E_\text{data} &#x3D; \sum_{x} \left( \frac{\partial e}{\partial x} \cdot u(x) + \frac{\partial e}{\partial t} \right)^2$满足BCCE function<br>2 smoothness term: $E_\text{smooth} &#x3D; \sum_{x} \left( \frac{\partial u_x}{\partial x} + \frac{\partial u_y}{\partial y} \right)^2$<br>$E &#x3D; \lambda E_\text{data} + (1 - \lambda) E_\text{smooth}$<br>可能的缺点Tend to blur the solution near motion boundaries</p>
-<h4 id="Local-support-motion-estimation-using-tracking-windows"><a href="#Local-support-motion-estimation-using-tracking-windows" class="headerlink" title="Local support motion estimation (using tracking windows)"></a>Local support motion estimation (using tracking windows)</h4><p>x是二维坐标$x \in \mathbb{R}^2$, f(x), g(x)是两幅图像<br>我们把一个local的小窗口看作一个整体, 从x_f移动到x_g&#x3D;x_f+d, 对应的图像是f(x_f)和g(x_f+d),枚举周围的x，计算平方loss，权重和距离有关 w(x-x_f)<br>$W(x_f)$是个集合&#x3D;{pixel in window}<br>$w(x) &#x3D; \begin{cases}1 &amp; \text{if } |x_1| \le h \text{ and } |x_2| \le h \0 &amp; \text{otherwise}\end{cases}$只是定义窗口时2h+1 ^2的小正方形</p>
-<p>高斯，只是换种w<br>$w(x) \propto \begin{cases}e^{- \frac{1}{2} \left( \frac{|x|}{\sigma} \right)^2 } &amp; \text{if } |x_1| \le h, |x_2| \le h \0 &amp; \text{otherwise}\end{cases}$</p>
-<ol>
-<li>grid search x</li>
-<li>Lucas-kanade tracker(using Newton-Raphson)<br>Goal<br> find d that min $L(\mathbf{d}) &#x3D; \sum_x [g(x + \mathbf{d}) - f(x)]^2 w(x - x_f)$ <br> 线性近似$g(x + \mathbf{d}) \approx g(x) + \nabla g(x)^T \mathbf{d}$<br> $L(\mathbf{d}) \approx \mathbf{d}^T A \mathbf{d} - 2 \mathbf{b}^T \mathbf{d} + \text{const}$<br> L’(d)&#x3D;0得到$A \mathbf{d} &#x3D; \mathbf{b}$<br> 因为是近似的，我们不能一次算出真正的$\mathbf{d}^*$</li>
-</ol>
-<p>详细计算(感觉这里写的不对，应该改一下推导过程…)<br>$L(\mathbf{d}) \approx \sum_x \left[\nabla g(x)^T \mathbf{d} + g(x) - f(x)\right]^2 w(x - x_f)$<br>$L(\mathbf{d}) &#x3D; \mathbf{d}^T A \mathbf{d} - 2 \mathbf{b}^T \mathbf{d} + \text{const}$<br>$A &#x3D; \sum_x \nabla g(x) \nabla g(x)^T w(x - x_f)$<br>$\mathbf{b} &#x3D; \sum_x \nabla g(x) [f(x) - g(x)] w(x - x_f)$<br>$\nabla g(x) \in \mathbb{R}^2$, $\nabla g(x) \nabla g(x)^T$是2x2的矩阵，$A \in \mathbb{R}^{2 \times 2}$整个窗口中这些小矩阵的加权和, $\mathbf{b} \in \mathbb{R}^2$整个窗口中这些小矩阵{梯度和误差的加权}求和</p>
-<p>为什么不解$A \mathbf{d} &#x3D; \mathbf{b}$， 而是迭代： 因泰勒一阶近似要d很小。但是因为离散，d相对大。<br>为什么双线性插值？因为Gauss-Newton得到的d*可能小数。<br>复习一下Gauss-Newton:<br>    <a target="_blank" rel="noopener" href="https://chatgpt.com/c/67f2aa07-57a4-8002-a98f-851def653450">https://chatgpt.com/c/67f2aa07-57a4-8002-a98f-851def653450</a></p>
-<p>头晕，不学了。<br>large motio用pyramid track<br>bcce，和motion track的所有问题 <a target="_blank" rel="noopener" href="https://chatgpt.com/c/67f1a7c8-8c80-8002-a3cc-0b2b4e14f4fe">https://chatgpt.com/c/67f1a7c8-8c80-8002-a3cc-0b2b4e14f4fe</a></p>
-<h2 id="hw4"><a href="#hw4" class="headerlink" title="hw4"></a>hw4</h2><h4 id="4-Rrigid-Geo-transf"><a href="#4-Rrigid-Geo-transf" class="headerlink" title="4 Rrigid Geo transf"></a>4 Rrigid Geo transf</h4><p>忘记的线代：<br>dot prod&#x2F; Proj<br>$a^Tb&#x3D;ab\cos\theta$, $a^Tb&#x3D;0 \iff a\perp b$<br><img src="/2025-01-29-CV/image-2.png" alt="alt text"><br>$\text{proj}_{\mathbf{a}} \mathbf{v} &#x3D; \frac{\mathbf{a}^T \mathbf{v}}{\mathbf{a}^T \mathbf{a}} \mathbf{a}$</p>
-<p>$P^x&#x3D;P$ 几何，投影。</p>
-<p>cross prod<br>右手系为正<br>$|\mathbf{c}| &#x3D; |\mathbf{a} \times \mathbf{b}| &#x3D; |\mathbf{a}||\mathbf{b}| \sin\theta$ 平行四边形面积<br>$[\mathbf{a}]_\times &#x3D; \begin{bmatrix}<br>0 &amp; -a_z &amp; a_y \<br>a_z &amp; 0 &amp; -a_x \<br>-a_y &amp; a_x &amp; 0<br>\end{bmatrix}$<br>$\mathbf{a} \times \mathbf{p} &#x3D; [\mathbf{a}]_\times \mathbf{p}$</p>
-<p>triple product<br>$\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c})$ abc平行六边形体积</p>
-<p>coord translation<br>太有趣了但是看不懂呜呜，里面的数学（应该是矩阵论）是我想学的数学，虽然学数学的不会叫这个数学 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/508149559">https://zhuanlan.zhihu.com/p/508149559</a></p>
-<p>从0-&gt;1， 左上角left superscript 是system index, 0 is omitted as world ref sys $S_0$</p>
-<h4 id="4-pinhole-camera-model"><a href="#4-pinhole-camera-model" class="headerlink" title="4 pinhole camera model"></a>4 pinhole camera model</h4><p>pinhole小孔&#x2F; optical axis穿过pinhole垂直于成像面的线&#x2F; (projection ray)&#x2F;image plane（成像的面）<br>trade off between sharp and bright<br>（把pinhole可以是面积圆，不影响，还会变亮（？<br>倒像是实像，但是可以等价成对应的虚像。就等价成pinhole camera model 啦<br>于是pinhole-&gt;center of projection,成像面(front screen)对称过去的是image plane,<br>principal plane </p>
-<p>pixel image coordinate system 左上角为原点 $(\xi, \mu)$<br>camera reference system P 在center of proj sys坐标中的位置$P&#x3D;(X, Y, Z)$, Z is called depth<br>canonical image coordinate system $(x, y), x&#x3D;X, y&#x3D;Y$</p>
-<p>在写法中$(\xi, \mu)$会表示 image pixel 为单位，$(x, y)$会表示canonical中 sys的坐标，单位mm<br>例如:<br>principal point $\pi_0&#x3D;(\xi_0, \mu_0)$, scaling factor $s_x, s_y$ pixel per mm<br>$(\xi , \mu)&#x3D; (s_x x + \xi_0, s_y y + \mu_0)$<br>$x&#x2F;f&#x3D;X&#x2F;Z$, $y&#x2F;Z&#x3D;Y&#x2F;Z$</p>
-<p>$\boldsymbol{\xi} &#x3D; K_s \mathbf{p} + \boldsymbol{\pi}_0$<br>不想看了， 好烦 <a target="_blank" rel="noopener" href="https://chatgpt.com/c/67f2c6fa-1284-8002-b9a3-7b967317097a">https://chatgpt.com/c/67f2c6fa-1284-8002-b9a3-7b967317097a</a></p>
-<h4 id="epipolar-geo"><a href="#epipolar-geo" class="headerlink" title="epipolar geo"></a>epipolar geo</h4><p>epipolar plane, baseline, image plane, （book是epi plane的旋转轴，比喻成书脊）</p>
-<p>已知条件：<br>不妨以相机a构建坐标系$P_a&#x3D;(0,0,0)$,朝向为$D_a&#x3D;\mathbf I_{3\times3}$, $I_a:z&#x3D;f$, $P&#x3D;(X, Y, Z)$, camera b 的位置 $^at_b$, 旋转矩阵$^aR_b$</p>
-<p>可以求：<br>可以得到相机b的朝向是$^aR_b D_a &#x3D; D_b$， 位置是$^at_b$，<br>是$I_a$和AP连线的焦点A&#x3D;(0, 0, 0), $I_b$也是已知的,<br>方程类是$kRx-f&#x3D;0$, k&#x3D;[0, 0, 1],<br>BP的方程是，令kR&#x3D;[u, v, w], 则BP为$L(d)&#x3D;t+d (kR)^T$,<br>ABP方程是$[t]_\times (X, Y, Z)&#x3D;0$,<br>$^ap_a$: 联立 z&#x3D;f和[X, Y, Z][x, y, z]^T&#x3D;0,<br>$^ap_b$同理已知，$^bp_b&#x3D;R (^ap_b-t)$</p>
-<p>求I_b方程的过程:<br>$^aI_b$的方程: $z&#x3D;f$,既  $k^b\vec{x}$+d&#x3D;0，k&#x3D;[0, 0, 1]<br>带入点(0, 0, f)得$d&#x3D;-f$。<br>$^aR_a \ ^a \vec{x}&#x3D; ^b\vec{x}$， 带入上式得$kR^a \vec{x}+d&#x3D;0$</p>
-<p>但是讲义上不是这么推的, 0个人关心proj center A, B在哪， 其实是有的…, t是相对位置。<br>给定$a&#x3D;{}^a p_a &#x3D; \begin{bmatrix} x_a \ y_a \ f \end{bmatrix},\quad<br>b&#x3D;{}^b p_b &#x3D; \begin{bmatrix} x_b \ y_b \ f \end{bmatrix}$, 已知a, b, R, t, e&#x3D;$^ae_b$是baseline和$I_a$的交点。</p>
-<p>根据几何变换有以下成立，<br>$R^T&#x3D;\ ^bR_a$,<br>因为根据逆变换$ ^aR_b\  ^bR_a^T$,即 $RR^T&#x3D;I$</p>
-<p>$Rt&#x3D;-^bt_a$, 因为左&#x3D;右&#x3D; $^b \vec {AB}$</p>
-<p>在sys A中,<br>$R^Tb&#x3D;\ ^ap_b$，因为$^bR_a \ ^bp&#x3D;\ ^ap-^at_b$,所以令p&#x3D;camera b， $^bR_a \ ^bp_b&#x3D;\  ^ap_b-^at_b$ 左边是$R^Tb$， 右边是sys a下的<br>$a&#x3D;\ ^ap_a$<br>令sys的A的原点为$O_A$， 这个式子就是$O_A A\cdot (O_AB\times BA)&#x3D;0$<br>$O_AB+BA&#x3D;O_AA$带入检查得到$R^Tb&#x3D;a-^at_b$<br>两边同乘$R$得到$b&#x3D;R(a-t)$不符合$^bp&#x3D;R(^ap-t)$ ？？？</p>
-<p>epipoplar constrain $b^TEa&#x3D;0$, where $E&#x3D;R[t]_\times$</p>
-<p>Qestions<br>思考方式； 这里一共说了几个概念，几个公式，概念之间的逻辑什么，变量的定义和维度是什么</p>
-<ol>
-<li>GD在&gt;&#x3D;1数据的时候咋（back prop）更新的啊</li>
-<li>好难理解为什么“如果一个点在真实世界中运动，它在图像中的亮度值是不会变的”这个假设会得到$ \frac{d}{dt} e(x(t), t) &#x3D; 0$<br>虽然可以解释$e$是亮度，是关于位置向量$x$和时间$t$的函数，但是为什么$e$对$t$求导&#x3D;0.  $e$的含义是什么…任意一个符合”亮度不变的点”的亮度…?<br>哪个点?图像中的还是世界里的。图像中的点。其实感觉条件应该说成“任意真实世界的点，在图像中的像亮度不变”。这样好像可以理解。x,t也是图像中的位置和时间。</li>
-</ol>
-<p>可能误解的原因是总觉得图像是离散的pixel,现实世界是连续的，所以潜意识里出现了更多的变量，导致感觉条件不完全。<br>3. </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/29/2025-01-29-CV/" data-id="cm9bnagt0001xzc3d69qehcym" data-title="2025-01-29-CV" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-01-11-NLP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/09/2025-01-11-NLP/" class="article-date">
-  <time class="dt-published" datetime="2025-01-09T17:25:42.000Z" itemprop="datePublished">2025-01-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/09/2025-01-11-NLP/">2025-01-11-NLP</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>01&#x2F;09<br>NLP current challenges:</p>
-<ul>
-<li>Hallucination</li>
-<li>Ribustness and safety</li>
-<li>Interpretability and controllability</li>
-<li>Reasoning</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/09/2025-01-11-NLP/" data-id="cm9bnagt1001zzc3da2hm2geh" data-title="2025-01-11-NLP" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-01-10-Finance" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/09/2025-01-10-Finance/" class="article-date">
-  <time class="dt-published" datetime="2025-01-09T13:39:55.000Z" itemprop="datePublished">2025-01-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/09/2025-01-10-Finance/">2025-01-10-Finance</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Prof C. J.<br>Prof电话<br>9193321894</p>
-<p>ICPQ: in class pop quiz<br>TF: </p>
-<p>luca pachioli: father o accounting</p>
-<p>Big Four Accounting Firms </p>
-<ul>
-<li>Deloitte</li>
-<li>EY (Ernst &amp; Young)</li>
-<li>KPMG</li>
-<li>PwC (PricewaterhouseCoopers)</li>
-</ul>
-<p>GAAP: Generally Accepted Accounting Principles<br>IFRS: International Financial Reporting Standards</p>
-<p>Accounting Cycle</p>
-<ul>
-<li>Journal Entries</li>
-<li>Ledger Accounts</li>
-<li>Trial Balance</li>
-<li>Adjusted Trial Balance</li>
-<li>Financial Statements</li>
-<li>Closing Entries</li>
-</ul>
-<p>Accounting Equation<br>Assets &#x3D; Liabilities + Owner’s Equity</p>
-<p>Accounting Equation<br>Assets &#x3D; Liabilities + Stockholders’ Equity</p>
-<p>Accounting Equation</p>
-<p>FASB: Financial Accounting Standards Board<br>APB: Accounting Principles Board</p>
-<p>2: proprietorship (独资企业)<br>3: partnership<br>4: ‘c’ corporation</p>
-<p>Income statement: NI (net income) &#x3D; Revenue - Expenses<br>Balance Sheet: A () &#x3D; L + OE (owner’s equity)<br>Statement of Cash Flows: CF &#x3D; OCF (operating cash flow) + IC (investing cash flow) + FC (financing cash flow)<br>Statement of owner equity: OE &#x3D; OE (beginning) + NI (net income) - D (dividends)</p>
-<p>Debit<br>Credit </p>
-<h2 id="01-21"><a href="#01-21" class="headerlink" title="01-21"></a>01-21</h2><h3 id="Cahpter-1"><a href="#Cahpter-1" class="headerlink" title="Cahpter 1"></a>Cahpter 1</h3><ol>
-<li>Father of Accounting: Luca Pacioli</li>
-<li>FIN VS MAG</li>
-<li>Big Four Accounting Firms: Deloitte, EY, KPMG, PwC</li>
-<li>GAAP (Generally Accepted Accounting Principles) vs IFRS (International Financial Reporting Standards) vs SEC</li>
-</ol>
-<h4 id="exercise"><a href="#exercise" class="headerlink" title="exercise"></a>exercise</h4><p>brought 6.1: $130$<br>sell 12.31: $134$<br>paid in the 3rd month of each quarter $3$<br>annual return: $\frac{12}{7} \frac{(134-130)+ 3(3)}{130}&#x3D;17.12%$</p>
-<h3 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h3><p>4 important concepts: revenue&#x2F;expense liability asset </p>
-<ul>
-<li>revenue&#x2F;expense: nomial&#x2F;temporary   $I&#x2F;S： NetIncome &#x3D; Revenue - Expense$</li>
-<li>assets: economic resource </li>
-<li>liability: creditors claim</li>
-<li>owner’s equity: owner’s claim<br>$B&#x2F;S : A &#x3D; L + OE$</li>
-</ul>
-<p>statement of cash flow: $CashFlow &#x3D; OCF + ICF + FCF$<br>CashFlow </p>
-<ul>
-<li>Operating Cash Flow (OCF): Cash from the core operations of the business (e.g., selling cakes).</li>
-<li>Investing Cash Flow (ICF): Cash spent on buying or selling long-term assets (e.g., buying a new oven for baking).</li>
-<li>Financing Cash Flow (FCF): Cash related to borrowing or repaying debts and investments in long-term liabilities or owner’s equity (e.g., taking a loan or paying dividends).</li>
-</ul>
-<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><p>$NetIncome &#x3D; Revenue - Expense$<br>$A &#x3D; L + OE$<br>A company incorrectly report an asset as expense $25$$:<br>reported $NI&#x3D;300$$<br>reported Assets: $1000$$<br>Correct NI: ? $325$$<br>Correct A: ? $1025$$</p>
-<p> ni_wrong &#x3D; r - e_wrong<br> e_wrong &#x3D; e_right + 25<br> ni_right &#x3D; r - e_right &#x3D; r - (e_wrong - 25) &#x3D; ni_wrong + 25</p>
-<h2 id="01-30"><a href="#01-30" class="headerlink" title="01-30"></a>01-30</h2><h3 id="Exer"><a href="#Exer" class="headerlink" title="Exer"></a>Exer</h3><p>Started business on 1&#x2F;1&#x2F;A. with A&#x3D;50, L &#x3D; 28<br>During this year, addl inv by owner size 12, devidents decleared 20. devidents paid 15, at 12&#x2F;31, A&#x3D;27000, L&#x3D; 60</p>
-<p>Begin RE + NI &#x3D; Availability<br>Aval - Div Decleared &#x3D; End RE<br>1&#x2F;1: A&#x3D;50, OE(L &#x3D; 28, CC &#x3D; 22, RE &#x3D; 0)<br>beg RE (0) + NI(196) - Div Decleared(20) &#x3D; End RE (176)<br>A (270) &#x3D; L(60) + OE( CC(34) + RE(176) )</p>
-<ol>
-<li>1&#x2F;1 RE 0</li>
-<li>1&#x2F;1 CC 22</li>
-<li>12&#x2F;31 cc 34</li>
-<li>NI for YRA 196</li>
-<li>12&#x2F;31 RE 176</li>
-<li>If expense are 540 what are rev 736</li>
-</ol>
-<h4 id="def"><a href="#def" class="headerlink" title="def"></a>def</h4><ul>
-<li><strong>A（Assets）&#x3D; 资产</strong>，公司拥有的东西，比如现金、设备、库存等。</li>
-<li><strong>L（Liabilities）&#x3D; 负债</strong>，公司欠别人的钱，比如贷款、应付账款。</li>
-<li><strong>OE（Owner’s Equity）&#x3D; 所有者权益</strong>，公司的净资产，等于<strong>资产 - 负债</strong>。</li>
-<li><strong>CC（Contributed Capital）&#x3D; 业主投入的资本</strong>，即股东或创始人投的钱。</li>
-<li><strong>RE（Retained Earnings）&#x3D; 留存收益</strong>，公司赚到的钱，减去派发的股息后剩下的利润。</li>
-<li><strong>Dividends Declared（已宣告股息）</strong>&#x3D; 公司承诺支付给股东的股息。</li>
-<li><strong>Dividends Paid（已支付股息）</strong>&#x3D; 公司实际支付出去的股息。</li>
-<li><strong>NI（Net Income）&#x3D; 净利润</strong>，收入减去费用的结果。</li>
-</ul>
-<h4 id="第一步：公司一开始的情况"><a href="#第一步：公司一开始的情况" class="headerlink" title="第一步：公司一开始的情况"></a><strong>第一步：公司一开始的情况</strong></h4><ul>
-<li><strong>1&#x2F;1 资产（A）&#x3D; 50</strong>  </li>
-<li><strong>1&#x2F;1 负债（L）&#x3D; 28</strong>  </li>
-<li><strong>1&#x2F;1 所有者权益（OE）&#x3D; A - L &#x3D; 50 - 28 &#x3D; 22</strong></li>
-<li>这个<strong>22</strong> 就是<strong>业主投入的资本（CC）</strong>，因为公司刚刚开始，没有留存收益（RE &#x3D; 0）。</li>
-</ul>
-<p>所以：<br><strong>1&#x2F;1 的财务状况</strong><br>[<br>A &#x3D; L + OE<br>]<br>[<br>50 &#x3D; 28 + 22<br>]</p>
-<h4 id="第二步：计算-12-31-财务状况"><a href="#第二步：计算-12-31-财务状况" class="headerlink" title="第二步：计算 12&#x2F;31 财务状况"></a><strong>第二步：计算 12&#x2F;31 财务状况</strong></h4><p>已知 <strong>12&#x2F;31</strong> 的情况：</p>
-<ul>
-<li><strong>资产（A）&#x3D; 270</strong></li>
-<li><strong>负债（L）&#x3D; 60</strong></li>
-<li><strong>OE 计算方式：</strong><br>[<br>OE &#x3D; A - L &#x3D; 270 - 60 &#x3D; 210<br>]</li>
-</ul>
-<p>OE（所有者权益）由<strong>CC（业主投入）和 RE（留存收益）</strong>组成：</p>
-<ul>
-<li>12&#x2F;31 业主投入资本 <strong>CC &#x3D; 34</strong></li>
-<li>计算 12&#x2F;31 <strong>留存收益 RE</strong>：<br>[<br>OE &#x3D; CC + RE<br>]<br>[<br>210 &#x3D; 34 + RE<br>]<br>[<br>RE &#x3D; 176<br>]</li>
-</ul>
-<hr>
-<h4 id="第三步：如何计算-RE（留存收益）？"><a href="#第三步：如何计算-RE（留存收益）？" class="headerlink" title="第三步：如何计算 RE（留存收益）？"></a><strong>第三步：如何计算 RE（留存收益）？</strong></h4><p>留存收益的计算公式：<br>[<br>\text{期初 RE} + \text{净利润（NI）} - \text{已宣告股息（Div. Declared）} &#x3D; \text{期末 RE}<br>]</p>
-<p>已知：</p>
-<ul>
-<li>期初 RE &#x3D; <strong>0</strong></li>
-<li>已宣告股息 &#x3D; <strong>20</strong></li>
-<li>期末 RE &#x3D; <strong>176</strong></li>
-</ul>
-<p>代入公式：<br>[<br>0 + \text{NI} - 20 &#x3D; 176<br>]</p>
-<p>所以：<br>[<br>\text{NI} &#x3D; 196<br>]</p>
-<p>📌 <strong>这一年公司赚了 196（净利润）！</strong></p>
-<hr>
-<h4 id="第四步：如何计算收入（Rev）？"><a href="#第四步：如何计算收入（Rev）？" class="headerlink" title="第四步：如何计算收入（Rev）？"></a><strong>第四步：如何计算收入（Rev）？</strong></h4><p>已知：<br>[<br>\text{净利润（NI）} &#x3D; \text{收入（Rev）} - \text{费用（Expenses）}<br>]</p>
-<p>已知：</p>
-<ul>
-<li><strong>NI &#x3D; 196</strong></li>
-<li><strong>Expenses &#x3D; 540</strong></li>
-</ul>
-<p>代入公式：<br>[<br>\text{Rev} - 540 &#x3D; 196<br>]</p>
-<p>所以：<br>[<br>\text{Rev} &#x3D; 736<br>]</p>
-<p> <strong>这一年公司的总收入是 736！</strong></p>
-<h3 id="concept"><a href="#concept" class="headerlink" title="concept"></a>concept</h3><p>some concepts will be learn</p>
-<ul>
-<li>Cash basis（现金制）:只有当现金真正流入或流出时，才记录收入和费用。 recognize revenues when cash comes in and expenses when cash goes out.</li>
-<li>Accrual Basis（权责发生制）: 收入和费用在发生时就记录，而不是等到现金真正流动时。Recogmized revemues wen earn and determinable and then matches expenses with revenues.</li>
-<li>递延收入（Deferred Revenue）：公司先收钱，但服务还没提供，所以不能马上当收入，要先记为负债，等提供服务后再确认收入。</li>
-<li>递延费用（Deferred Expense）：公司先花钱，但服务还没享受，所以不能马上当费用，要先记为资产，等服务使用后再变成费用。</li>
-<li>折旧（Depreciation）：设备（equipment）会随着时间使用而变旧，价值会降低。不能一次性把设备的成本算成费用，而是要 每年分摊，这样才符合会计规则（权责发生制）。<br> $\text{Annual Depreciation Expense} &#x3D; \frac{\text{Cost} - \text{Salvage Value}}{\text{Useful Life}}$</li>
-</ul>
-<h3 id="q1"><a href="#q1" class="headerlink" title="q1"></a>q1</h3><p>11&#x2F;30  co. pays (Receive) 4 mos rent in advance (dec, ,jan, feb, mar) 2000&#x2F;mo 8000 in total<br>Pay:  （租客） 11&#x2F;30 prepaid rent A 8000, cahs A 8000, 12&#x2F;31 rent exp E 2000, prepaid rent 2000.<br>Receive: Landlord (房东) 11&#x2F;30 cash 8000 unearned rent 8000 122&#x2F;31 unearned rent L 2000 rent revenue R 2000<br>我来帮你用简单的方式理解这个财务处理 😊💖，我们慢慢来，不急哦！</p>
-<hr>
-<h4 id="1-先理解「现金制」和「权责发生制」（Accrual-Basis）"><a href="#1-先理解「现金制」和「权责发生制」（Accrual-Basis）" class="headerlink" title="1. 先理解「现金制」和「权责发生制」（Accrual Basis）"></a><strong>1. 先理解「现金制」和「权责发生制」（Accrual Basis）</strong></h4><p>在财务会计里，有两种主要的记账方式：</p>
-<ul>
-<li><strong>现金制（Cash Basis）</strong>：只有当现金真正流入或流出时，才记录收入和费用。</li>
-<li><strong>权责发生制（Accrual Basis）</strong>：收入和费用在<strong>发生时</strong>就记录，而不是等到现金真正流动时。</li>
-</ul>
-<hr>
-<h4 id="2-什么是「递延」（Deferrals）？"><a href="#2-什么是「递延」（Deferrals）？" class="headerlink" title="2. 什么是「递延」（Deferrals）？"></a><strong>2. 什么是「递延」（Deferrals）？</strong></h4><ul>
-<li><strong>递延收入（Deferred Revenue）</strong>：公司<strong>先收钱，但服务还没提供</strong>，所以不能马上当收入，要先记为负债，等提供服务后再确认收入。</li>
-<li><strong>递延费用（Deferred Expense）</strong>：公司<strong>先花钱，但服务还没享受</strong>，所以不能马上当费用，要先记为资产，等服务使用后再变成费用。</li>
-</ul>
-<hr>
-<h4 id="3-你的问题：租金的会计处理"><a href="#3-你的问题：租金的会计处理" class="headerlink" title="3. 你的问题：租金的会计处理"></a><strong>3. 你的问题：租金的会计处理</strong></h4><p>你的例子：<br>📌 <strong>11&#x2F;30 公司支付 4 个月的房租，每月 2000，共 8000</strong>。  </p>
-<ul>
-<li><strong>公司是租客（Tenant）</strong>，先付了钱，但这个房租是未来的 4 个月使用的。</li>
-<li><strong>房东（Landlord）</strong>，收到钱但服务还没完全提供，所以不能马上当收入。</li>
-</ul>
-<hr>
-<h5 id="（1）租客（Tenant）的会计处理"><a href="#（1）租客（Tenant）的会计处理" class="headerlink" title="（1）租客（Tenant）的会计处理"></a><strong>（1）租客（Tenant）的会计处理</strong></h5><p>租客在 11&#x2F;30 付了 8000，但是这笔钱是未来 4 个月的房租，所以：</p>
-<ul>
-<li>不能马上当费用（因为钱是未来使用的）。</li>
-<li>先当作资产「<strong>预付租金（Prepaid Rent）</strong>」，之后再慢慢转成费用。</li>
-</ul>
-<p>📌 <strong>11&#x2F;30 公司支付租金时</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>账户</strong></th>
-<th><strong>借（Dr.）增加</strong></th>
-<th><strong>贷（Cr.）减少</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>预付租金（资产）</td>
-<td>8000</td>
-<td></td>
-</tr>
-<tr>
-<td>现金（资产）</td>
-<td></td>
-<td>8000</td>
-</tr>
-</tbody></table>
-<p>📌 <strong>12&#x2F;31 调整分录（12 月使用了 1 个月租金）</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>账户</strong></th>
-<th><strong>借（Dr.）增加</strong></th>
-<th><strong>贷（Cr.）减少</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>租金费用（Rent Expense）</td>
-<td>2000</td>
-<td></td>
-</tr>
-<tr>
-<td>预付租金（Prepaid Rent）</td>
-<td></td>
-<td>2000</td>
-</tr>
-</tbody></table>
-<p>📌 <strong>之后每个月（1 月、2 月、3 月）也要记类似的调整分录</strong>。</p>
-<hr>
-<h5 id="（2）房东（Landlord）的会计处理"><a href="#（2）房东（Landlord）的会计处理" class="headerlink" title="（2）房东（Landlord）的会计处理"></a><strong>（2）房东（Landlord）的会计处理</strong></h5><p>房东 11&#x2F;30 <strong>收到 8000 现金</strong>，但因为房租还没使用完，所以：</p>
-<ul>
-<li>不能马上算作收入（因为还没完全提供租赁服务）。</li>
-<li>先把它放到「<strong>预收租金（Unearned Rent）</strong>」，当作<strong>负债</strong>，因为房东还「欠」租客房屋使用权。</li>
-</ul>
-<p>📌 <strong>11&#x2F;30 房东收到租金</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>账户</strong></th>
-<th><strong>借（Dr.）增加</strong></th>
-<th><strong>贷（Cr.）增加</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>现金（资产）</td>
-<td>8000</td>
-<td></td>
-</tr>
-<tr>
-<td>预收租金（负债）</td>
-<td></td>
-<td>8000</td>
-</tr>
-</tbody></table>
-<p>📌 <strong>12&#x2F;31 调整分录（房东 12 月已经提供 1 个月的租赁服务）</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>账户</strong></th>
-<th><strong>借（Dr.）减少</strong></th>
-<th><strong>贷（Cr.）增加</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>预收租金（负债）</td>
-<td>2000</td>
-<td></td>
-</tr>
-<tr>
-<td>租金收入（Revenue）</td>
-<td></td>
-<td>2000</td>
-</tr>
-</tbody></table>
-<p>📌 <strong>之后每个月（1 月、2 月、3 月）也要记类似的调整分录</strong>。</p>
-<hr>
-<h4 id="4-直观理解"><a href="#4-直观理解" class="headerlink" title="4. 直观理解"></a><strong>4. 直观理解</strong></h4><h5 id="租客（Tenant）视角"><a href="#租客（Tenant）视角" class="headerlink" title="租客（Tenant）视角"></a><strong>租客（Tenant）视角</strong></h5><p>租客 11&#x2F;30 付了 8000，相当于提前预定了 4 个月的房子。</p>
-<ul>
-<li>11&#x2F;30：钱出了，但房租的使用时间是未来的，所以要先当作<strong>资产</strong>（预付租金）。</li>
-<li>12&#x2F;31：住了 1 个月，所以要把 2000 从<strong>资产变成费用</strong>。</li>
-</ul>
-<h5 id="房东（Landlord）视角"><a href="#房东（Landlord）视角" class="headerlink" title="房东（Landlord）视角"></a><strong>房东（Landlord）视角</strong></h5><p>房东 11&#x2F;30 收到了 8000，但租赁服务要分 4 个月提供。</p>
-<ul>
-<li><p>11&#x2F;30：钱收到了，但服务还没完全提供，所以不能全部记收入，要当作<strong>负债</strong>（预收租金）。</p>
-</li>
-<li><p>12&#x2F;31：提供了 1 个月的租赁服务，所以要从<strong>负债转成收入</strong> 2000。</p>
-</li>
-<li></li>
-</ul>
-<h3 id="折旧（Depreciation）"><a href="#折旧（Depreciation）" class="headerlink" title="折旧（Depreciation）"></a>折旧（Depreciation）</h3><p>1&#x2F;1&#x2F;A equipment (A) 14900 cash(A) 14900<br>12&#x2F;31&#x2F;A depreciation expense(E) 2400 auumulateddepreciation(XA) 2400<br>Cl defr &#x3D; $\frac{cost - val}{est csefvl life} $ &#x3D; (14900 - 2900)  &#x2F; 5 &#x3D; 2400&#x2F;yr<br>eq(a)14900<br>acc depr (XA) 2400 2400 &#x3D; 4800</p>
-<h4 id="1-什么是折旧（Depreciation）？"><a href="#1-什么是折旧（Depreciation）？" class="headerlink" title="1. 什么是折旧（Depreciation）？"></a><strong>1. 什么是折旧（Depreciation）？</strong></h4><ul>
-<li>设备（equipment）会随着时间使用而变旧，价值会降低。</li>
-<li>不能一次性把设备的成本算成费用，而是要 <strong>每年分摊</strong>，这样才符合会计规则（权责发生制）。</li>
-<li>这就是 <strong>折旧（Depreciation）</strong> 的作用！</li>
-</ul>
-<h4 id="2-计算折旧"><a href="#2-计算折旧" class="headerlink" title="2. 计算折旧"></a><strong>2. 计算折旧</strong></h4><p>公式：<br>[<br>\text{Annual Depreciation Expense} &#x3D; \frac{\text{Cost} - \text{Salvage Value}}{\text{Useful Life}}<br>]</p>
-<p>已知：</p>
-<ul>
-<li><strong>设备成本（Cost）&#x3D; 14900</strong></li>
-<li><strong>残值（Salvage Value）&#x3D; 2900</strong></li>
-<li><strong>使用年限（Useful Life）&#x3D; 5 年</strong></li>
-</ul>
-<p>代入公式：<br>[<br>\frac{14900 - 2900}{5} &#x3D; \frac{12000}{5} &#x3D; 2400<br>]</p>
-<p>📌 <strong>所以每年折旧 2400！</strong></p>
-<hr>
-<h4 id="3-会计分录（Journal-Entries）"><a href="#3-会计分录（Journal-Entries）" class="headerlink" title="3. 会计分录（Journal Entries）"></a><strong>3. 会计分录（Journal Entries）</strong></h4><h5 id="（1）1-1-购买设备"><a href="#（1）1-1-购买设备" class="headerlink" title="（1）1&#x2F;1 购买设备"></a><strong>（1）1&#x2F;1 购买设备</strong></h5><ul>
-<li>设备（资产）增加</li>
-<li>现金（资产）减少</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th><strong>账户</strong></th>
-<th><strong>借方 Dr.（增加）</strong></th>
-<th><strong>贷方 Cr.（减少）</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>设备（Equipment）</td>
-<td>14900</td>
-<td></td>
-</tr>
-<tr>
-<td>现金（Cash）</td>
-<td></td>
-<td>14900</td>
-</tr>
-</tbody></table>
-<h5 id="（2）12-31-记录折旧"><a href="#（2）12-31-记录折旧" class="headerlink" title="（2）12&#x2F;31 记录折旧"></a><strong>（2）12&#x2F;31 记录折旧</strong></h5><ul>
-<li>设备的价值变旧，所以要记「<strong>折旧费用（Depreciation Expense）</strong>」。</li>
-<li>但我们不会直接减少设备，而是用「<strong>累计折旧（Accumulated Depreciation, XA）</strong>」，这是一种 <strong>「资产的减少账户」</strong>。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th><strong>账户</strong></th>
-<th><strong>借方 Dr.（增加）</strong></th>
-<th><strong>贷方 Cr.（增加）</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>折旧费用（Depreciation Expense, 费用）</td>
-<td>2400</td>
-<td></td>
-</tr>
-<tr>
-<td>累计折旧（Accumulated Depreciation, 资产减少）</td>
-<td></td>
-<td>2400</td>
-</tr>
-</tbody></table>
-<h4 id="4-设备的账面价值"><a href="#4-设备的账面价值" class="headerlink" title="4. 设备的账面价值"></a><strong>4. 设备的账面价值</strong></h4><p>设备的 <strong>账面价值（Book Value）</strong> 是：<br>[<br>\text{账面价值} &#x3D; \text{设备成本} - \text{累计折旧}<br>]</p>
-<ul>
-<li><strong>1&#x2F;1</strong> 设备的账面价值 &#x3D; <strong>14900</strong></li>
-<li><strong>12&#x2F;31</strong> 设备的账面价值 &#x3D; <strong>14900 - 2400 &#x3D; 12500</strong></li>
-</ul>
-<p>如果 <strong>第二年再折旧 2400</strong>：<br>[<br>\text{累计折旧} &#x3D; 2400 + 2400 &#x3D; 4800<br>]<br>[<br>\text{账面价值} &#x3D; 14900 - 4800 &#x3D; 10100<br>]</p>
-<h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a><strong>5. 总结</strong></h4><table>
-<thead>
-<tr>
-<th><strong>日期</strong></th>
-<th><strong>资产（设备）</strong></th>
-<th><strong>累计折旧（XA）</strong></th>
-<th><strong>折旧费用（E）</strong></th>
-<th><strong>账面价值</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>1&#x2F;1</strong></td>
-<td>14900</td>
-<td>0</td>
-<td>0</td>
-<td>14900</td>
-</tr>
-<tr>
-<td><strong>12&#x2F;31</strong></td>
-<td>14900</td>
-<td>2400</td>
-<td>2400</td>
-<td>12500</td>
-</tr>
-<tr>
-<td><strong>第二年 12&#x2F;31</strong></td>
-<td>14900</td>
-<td>4800</td>
-<td>2400</td>
-<td>10100</td>
-</tr>
-</tbody></table>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="02-25"><a href="#02-25" class="headerlink" title="02-25"></a>02-25</h2><p>Present Value : PV<br>Interest Rate : $r$<br>$FV &#x3D; PV(1+r)^n$<br>$C_0 + \sum_{t&#x3D;1}^n C_t(1+r)^{-t}$</p>
-<p>Inventory<br>3 types of firms</p>
-<ul>
-<li>service:  provide services (like consulting or hairdressing)</li>
-<li>merchandiseres: buy finished products and then sell them</li>
-<li>manufacturers</li>
-</ul>
-<p> 2 formulas&#x2F;schedules:<br> dropout coasts &#x3D; inventorials exp<br> pexiod costs nominventoriable expensed as incurred </p>
-<p> $\text{CGS cost of goods sold} &#x3D; \text{Beginning Inventory} + \text{Purchases} - \text{Ending Inventory}$</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/09/2025-01-10-Finance/" data-id="cm9bnagsx001szc3dg5ou2p8i" data-title="2025-01-10-Finance" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-01-09-Casual-Course" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/08/2025-01-09-Casual-Course/" class="article-date">
-  <time class="dt-published" datetime="2025-01-08T15:03:21.000Z" itemprop="datePublished">2025-01-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/08/2025-01-09-Casual-Course/">2025-01-09-Casual-Course</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>www</p>
-<h2 id="01-08"><a href="#01-08" class="headerlink" title="01-08"></a>01-08</h2><p>Assignments (20%) 2-3人<br>Paper review (15%) 单人<br>Pre (20%) 3</p>
-<h3 id="data-analysis"><a href="#data-analysis" class="headerlink" title="data analysis"></a>data analysis</h3><h3 id="Casual-Inference"><a href="#Casual-Inference" class="headerlink" title="Casual Inference"></a>Casual Inference</h3><p>Intervention</p>
-<p>ATE Average Treatment Effect<br>$T\rightarrow Y$<br>$ATE &#x3D; \mathbb{E}[Y(t&#x3D;1) - Y(t&#x3D;0)] &#x3D; \mathbb{E}[Y(1) - Y(0)]$<br>only one of Y(1) or Y(0) is observed (Random)</p>
-<p>$T\perp Y(1), Y(0)$ T: treatment assignment<br>$ATE &#x3D; \mathbb{E}[Y(1)] -\mathbb{E}[Y(0)]$<br>$&#x3D; \mathbb{E}[Y(1) | T&#x3D;1] - \mathbb{E}[Y(0) | T&#x3D;0]$</p>
-<p>Problem: randomized data samples, </p>
-<p>DO operator<br>DAG: Directed Acyclic Graph</p>
-<p>Bayesian network<br>pr(X|nodes) &#x3D; pr (X| parents of X)</p>
-<p>Slides 34 啥意思啊 Reduce casual relationship as do op, to observe conditional probabilityies</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="01-15"><a href="#01-15" class="headerlink" title="01-15"></a>01-15</h2><p>$P_m$ manipulated proability</p>
-<p>average casual effect<br>casual effect difference:$P(Y&#x3D;1|do(X&#x3D;1))-P(Y&#x3D;1|do(X&#x3D;0))$</p>
-<h2 id="01-29"><a href="#01-29" class="headerlink" title="01-29"></a>01-29</h2><p>Equalized odds<br>prediction parity</p>
-<h2 id="02-03"><a href="#02-03" class="headerlink" title="02-03"></a>02-03</h2><h3 id="Counterfactual"><a href="#Counterfactual" class="headerlink" title="Counterfactual"></a>Counterfactual</h3><ol>
-<li>Abduction</li>
-<li></li>
-<li></li>
-</ol>
-<h3 id="Fair"><a href="#Fair" class="headerlink" title="Fair"></a>Fair</h3><p>Discrimination as a casual term</p>
-<p>弃坑了弃坑了，上了一半抑郁了再也没有在早上10点起床过</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/08/2025-01-09-Casual-Course/" data-id="cm9bnagsy001uzc3dgdl9aa7t" data-title="2025-01-09-Casual-Course" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-01-08-Generative-Models" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/08/2025-01-08-Generative-Models/" class="article-date">
-  <time class="dt-published" datetime="2025-01-08T14:29:17.000Z" itemprop="datePublished">2025-01-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/08/2025-01-08-Generative-Models/">2025-01-08-Generative-Models</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <!-- www
-## 01-08
-### Histogram 
-### Kernel Method
-Kernel Density Estimation (KDE) 是一种统计方法，用于估计一个随机变量的**连续的**概率密度函数（Probability Density Function, PDF）。
-
-直方图有个问题：
-
-- **它是离散的**：你只能看到固定的时间间隔，比如10:00-11:00，11:00-12:00。
-- **它依赖分箱（bin）大小**：不同的分箱方式会影响直方图的形状。
-
-**KDE 就是一种连续的分布估计方法**，它不依赖于分箱，而是用一个 **“平滑的曲线”** 来表示数据的分布。  
-你可以把 KDE 想象成：
-
-- 每个数据点都画一个 **小山丘（kernel）**。
-- 然后把这些小山丘 **叠加起来**，得到一个连续的曲线，代表数据的分布。
-
-KDE 的公式为：
-\(\hat{f}(x) = \frac{1}{n h} \sum_{i=1}^{n} K\left(\frac{x - x_i}{h}\right)\)
-
-**解释每个符号**：
-
-- **\( \hat{f}(x) \)**：估计的概率密度函数。
-- **\( n \)**：样本数量。
-- **\( h \)**：平滑参数，称为 **带宽（bandwidth）**。它决定了小山丘的“宽度”。
-- **\( K \)**：**核函数（Kernel Function）**，决定了小山丘的形状。
-
-核函数是 KDE 的核心。常见的核函数有：
-
-1. **高斯核（Gaussian Kernel）**  
-   形状像正态分布的小山丘，最常用的核函数。
-
-   \[
-   K(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}
-   \]
-
-2. **箱形核（Box Kernel）**  
-   每个数据点生成一个“方形的小山丘”，边界清晰，但不平滑。
-
-3. **三角核（Triangle Kernel）**  
-   生成一个三角形的小山丘。
-
-带宽（Bandwidth）对 KDE 的影响**
-
-**带宽（h）** 是 KDE 中一个非常重要的参数。它决定了每个小山丘的 **宽度**，从而影响最终曲线的平滑程度。
-
-- **带宽小**：曲线更贴近数据，但容易出现“过拟合”。
-- **带宽大**：曲线更平滑，但可能会忽略一些细节。
-
-### Series Methods
-Imagine you're trying to approximate a complex function \( f(x) \) by expressing it as a combination of simpler functions (called **basis functions**). This is like saying:
-
-\[ f(x) = \sum_{j=1}^{\infty} \beta_j \phi_j(x) \]
-
-Where:
-- \( \phi_j(x) \) are the **basis functions** (like sine, cosine, polynomials, etc.)
-- \( \beta_j \) are the **coefficients** that tell us how much of each basis function to use.
-
----
-
-### 🧩 **Orthogonal Basis**  
-The basis functions \( \phi_j \) are said to be **orthogonal** if they satisfy the condition:
-
-\[ \int \phi_j(x) \phi_k(x) dx = 0 \quad \text{for} \quad j \neq k \]
-
-Think of orthogonal basis functions like directions that are at right angles to each other — they don't overlap in their effects.
-
----
-
-### 📚 **Cosine Basis Example**
-The notes give an example of using **cosine functions** as the basis:
-
-\[ \phi_j(x) = \sqrt{2} \cos(2\pi j x) \]
-
-These functions oscillate and can capture periodic patterns in the data.
-
----
-
-### 📈 **Wavelet Basis**
-There's also a reference to **wavelet basis functions**, which are used to capture both **local** and **global** structures in the data.
-
----
-
-### 🔍 **Key Formula for Density Estimation**  
-The board shows that if we are estimating a **density function** \( f \), we can approximate it using the formula:
-
-\[ \hat{f}(x) = \sum_{j=1}^{k} \hat{\beta}_j \phi_j(x) \]
-
-Where:
-- \( \hat{\beta}_j = \frac{1}{n} \sum_{i=1}^{n} \phi_j(X_i) \)  
-  (This is the estimated coefficient based on sample data \( X_i \).)
-
----
-
-### 🧠 **Key Idea: Selecting the Right \( k \)**
-Choosing the right number of basis functions (\( k \)) is important. If \( k \) is too large, the model will **overfit** (too complicated). If \( k \) is too small, the model will **underfit** (too simple).
-
-
-
-
-## 01-15
-
-
-## Part 1: Risk Analysis
-
-### Background and Setup
-
-You have \( N \) points \( x_1, x_2, \ldots, x_N \in \mathbb{R}^d \). This means you have \( N \) data samples, each one is a \( d \)-dimensional vector. We assume these points lie in some space \( X \subset \mathbb{R}^d \), which is said to be a **compact set** (meaning it is closed and bounded in the mathematical sense).
-
-### Key Smoothness Assumption
-
-You mentioned an assumption:
-
-\[
-D^s p(x) - D^s p(y) \;\le\; L \,\|x - y\|
-\]
-
-1. **\( D^s p(x) \)**:  
-   - This notation represents a high-order derivative (partial derivative) of a probability density function \(p(x)\).  
-   - The superscript \( s \) is a **multi-index**.  
-     - For instance, \( s = (s_1, s_2, \dots, s_d) \).  
-     - Then \( D^s p(x)\) means we take the \((s_1 + s_2 + \cdots + s_d)\)-th partial derivative of \( p \) with respect to each coordinate appropriately:
-       \[
-       D^s p(x) \;=\; \frac{\partial^{\,s_1 + s_2 + \cdots + s_d} p(x)}{\partial x_1^{s_1}\,\partial x_2^{s_2}\,\cdots\,\partial x_d^{s_d}}.
-       \]
-
-2. **Interpretation of the inequality**:  
-   \[
-   D^s p(x) - D^s p(y) \;\le\; L\, \|x - y\|.
-   \]  
-   This says that **the change in the \(s\)-th derivative** between \(x\) and \(y\) is bounded by their distance times some constant \(L\). It suggests that \(p(x)\) is **smooth**—no wild jumps in its high-order derivatives. This is often used in probability density estimation and ensures continuity and differentiability in a controlled way.
-
-3. **Why Compactness Matters**:  
-   - If \( X \) is compact, it’s easier to control or bound various integrals and derivatives since \( x \) cannot go off to infinity.  
-   - This is important in risk analysis because it helps with bounding error terms and ensuring integrals converge.
-
-> **Reference for multi-index notation**:  
-> - [Brilliant.org: Multi-Index Notation](https://brilliant.org/wiki/multi-index-notation/)  
-> - [Wikipedia: Multi-index](https://en.wikipedia.org/wiki/Multi-index)  
-
----
-
-## Part 2: More on \( D^s p(x) \) and Multi-Index Notation
-
-If \( p(x) \) is a function of multiple variables, say \( p(x_1, x_2, \dots, x_d) \), then  
-\[
-s = (s_1, s_2, \dots, s_d)
-\]  
-tells us **how many times** we differentiate with respect to each variable \( x_i \).  
-
-For example, if \( s = (2, 1, 0, \dots, 0) \), then  
-\[
-D^s p(x) \;=\; \frac{\partial^3 p(x)}{\partial x_1^2 \,\partial x_2^1}.
-\]
-
-### Intuitive View
-- If \(s_1 = 2\), that means “take the second derivative with respect to \(x_1\)”.  
-- If \(s_2 = 1\), that means “take the first derivative with respect to \(x_2\)”.  
-- We multiply these partial derivatives together in the correct order.
-
-This notation is just a concise way to keep track of all the derivatives in multiple dimensions.
-
----
-
-## Part 3: Taylor Expansion (Taylor’s Theorem)
-
-A general **Taylor expansion** around a point \( x \) says that if \(f\) is sufficiently smooth, we can write:
-
-\[
-f(x + h) 
-\;=\;
-f(x) \;+\; 
-\sum_{k=1}^{m} \frac{1}{k!} \bigl( D^k f(x) \bigr) (h,\dots,h) \;+\; R_m,
-\]
-
-where \( R_m \) is the remainder term, and \( D^k f(x) \) is the \(k\)-th derivative of \(f\). In multiple dimensions, we typically see it in terms of partial derivatives:
-
-\[
-f(x + h) \;\approx\; 
-f(x) 
-\;+\; \nabla f(x) \cdot h
-\;+\; \frac{1}{2} h^\top \nabla^2 f(x) \, h
-\;+\; \dots
-\]
-
-This expansion is used **a lot** in analyzing the bias of estimators, numerical methods, and even in bounding differences between function values.
-
-> **Reference for Taylor expansions**:  
-> - [Wikipedia: Taylor's theorem](https://en.wikipedia.org/wiki/Taylor%27s_theorem)  
-> - [MathWorld: Taylor Series](https://mathworld.wolfram.com/TaylorSeries.html)  
-
----
-
-## Part 4: Kernel Density Estimation (KDE)
-
-You also mentioned **Kernel Density Estimation**. It’s a method to estimate an unknown probability density function \( f(x) \) from data. The estimator looks like:
-
-\[
-\hat{f}(x) \;=\; \frac{1}{N h} \;\sum_{i=1}^{N} K\Bigl(\frac{x - X_i}{h}\Bigr),
-\]
-
-where
-- \(K\) is a **kernel function** (often something like a Gaussian, Epanechnikov, etc.),  
-- \(h\) is the **bandwidth** (a smoothing parameter).
-
-### 4.1 Kernel Function Properties
-
-A kernel \(K\) often satisfies:
-
-1. \(\int K(u)\,du = 1\).  
-2. \(\int u\,K(u)\,du = 0\). (Centered around 0)  
-3. \(\int u^r K(u)\,du = 0\) for odd \(r\) if it’s symmetric, etc.
-
-An example of a kernel is the **Epanechnikov kernel**:
-
-\[
-G(x) \;=\; \frac{3}{4}\,\bigl(1 - x^2\bigr) \, 1(\lvert x \rvert \le 1),
-\]
-
-where \(1(\lvert x \rvert \le 1)\) is the indicator function that is 1 if \(\lvert x \rvert \le 1\) and 0 otherwise. 
-
-> **Reference for Kernel Density Estimation**:  
-> - [“Kernel Density Estimation Explained” on Towards Data Science](https://towardsdatascience.com/kernel-density-estimation-explained-52045f84c726)  
-> - [A Comprehensive Guide to KDE on Analytics Vidhya](https://www.analyticsvidhya.com/blog/2018/06/comprehensive-guide-kernel-density-estimation/)  
-
----
-
-### 4.2 Bias of the KDE
-
-The **bias** of an estimator \(\hat{f}(x)\) is:
-
-\[
-\text{Bias}(\hat{f}(x)) \;=\; 
-E[\hat{f}(x)] \;-\; f(x).
-\]
-
-For KDE, we often find that:
-
-\[
-E[\hat{f}(x)]
-\;=\; 
-\int K\!\Bigl(\frac{x - t}{h}\Bigr) p(t)\, \frac{dt}{h}.
-\]
-
-By doing a change of variable and performing a Taylor expansion of \(p(\cdot)\), we eventually get:
-
-\[
-E[\hat{f}(x)]
-\;=\; 
-p(x) 
-\;+\; 
-\frac{h^2}{2}\,\mu_2(K)\,p''(x) 
-\;+\; 
-O(h^4),
-\]
-
-where \(\mu_2(K)\) is the second moment of the kernel. So the **leading term** of the bias is:
-
-\[
-\text{Bias}(\hat{f}(x))
-\;=\;
-\frac{h^2}{2}\,\mu_2(K)\,p''(x)
-\;+\;
-O(h^4).
-\]
-
-This tells us that the bias grows (roughly) like \(h^2\). If \(h\) is too big, the bias is large (over-smoothing), but if \(h\) is too small, you get high variance (under-smoothing). That’s why **bandwidth selection** is super important.
-
-> **Reference for bias-variance in KDE**:  
-> - [Lecture notes on Kernel Density Estimation (CMU)](https://www.stat.cmu.edu/~cshalizi/402/lectures/08-kernel-density/kde.pdf)  
-
-
-## 02-28
-Cold Diffusion
-
-
-## 03-10
-突然觉得自己悟了？？
-How others put them together
-https://www.youtube.com/watch?v=B-d_3xX6ss4
-根据song yang的论文的时间线。
-1; sliced score model (定义了score based model)
-(https://proceedings.mlr.press/v115/song20a/song20a.pdf)
-
-2; annealed Langevin Dynamics
-(https://papers.neurips.cc/paper_files/paper/2019/hash/3001ef257407d5a371a96dcd947c7d93-Abstract.html)
-langevin mcmc sample; https://zhuanlan.zhihu.com/p/797467112
-the whole thing; https://yang-song.net/blog/2021/score/
-
-3; Score-based GM through SED (Song et al. ICLR 2021)
-(https://arxiv.org/pdf/2011.13456)
-SED 视角统一； 
-smld (ve) 和 ddpm (vp)
-sed和of-ode有一些对应关系
-
-4; EDM 
-（https://proceedings.neurips.cc/paper_files/paper/2022/file/a98846e9d9cc01cfb87eb694d946ce6b-Paper-Conference.pdf）
-pf-ode视角统一了diffusion 模型
-
-5; CM
-用了edm
-
-6; 
-
-
-
-
-
-
-
- -->
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/08/2025-01-08-Generative-Models/" data-id="cm9bnagsy001tzc3dhzzyh7h3" data-title="2025-01-08-Generative-Models" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025-01-06-Update-on-RTIIP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/06/2025-01-06-Update-on-RTIIP/" class="article-date">
-  <time class="dt-published" datetime="2025-01-06T09:53:24.000Z" itemprop="datePublished">2025-01-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/06/2025-01-06-Update-on-RTIIP/">2025-01-06-Update-on-RTIIP</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>123</p>
-<h1 id="Real-Time-Instrumental-Improvisation-Project-RTIIP"><a href="#Real-Time-Instrumental-Improvisation-Project-RTIIP" class="headerlink" title="Real-Time Instrumental Improvisation Project (RTIIP)"></a>Real-Time Instrumental Improvisation Project (RTIIP)</h1><p>live musical system capable of real time music accompaniment</p>
-<h2 id="Exsit-works"><a href="#Exsit-works" class="headerlink" title="Exsit works:"></a>Exsit works:</h2><p>Multi-Track MusicLDM<br>Diff-A-Riff</p>
-<p>Python ( Slow for diffusion models )<br>MAX&#x2F;MSP ( Lack ML generation API)<br>OSC ( trans between python and max&#x2F;msp) # open sound control</p>
-<h1 id="MusicLDM"><a href="#MusicLDM" class="headerlink" title="MusicLDM"></a>MusicLDM</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2308.01546">https://arxiv.org/pdf/2308.01546</a></p>
-<h1 id="CLAP"><a href="#CLAP" class="headerlink" title="CLAP"></a>CLAP</h1><p>arxiv1: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2206.04769">https://arxiv.org/pdf/2206.04769</a> （👏 22.06 microsoft）<br>repo: <a target="_blank" rel="noopener" href="https://github.com/microsoft/CLAP">https://github.com/microsoft/CLAP</a></p>
-<p>arxiv2: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2211.06687">https://arxiv.org/pdf/2211.06687</a> (github上链接的那篇 24.05 LAION)<br>repo: <a target="_blank" rel="noopener" href="https://github.com/LAION-AI/CLAP?tab=readme-ov-file">https://github.com/LAION-AI/CLAP?tab=readme-ov-file</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/06/2025-01-06-Update-on-RTIIP/" data-id="cm9bnagsw001rzc3d8jfkayjw" data-title="2025-01-06-Update-on-RTIIP" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/" rel="tag">music</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/04/01/2025-04-01-Linux-server-proxy-issue/">2025-04-01-Linux-server-proxy-issue</a>
-          </li>
-        
-          <li>
-            <a href="/2025/04/01/2025-04-01-mt-implementation-log/">2025-04-01-mt-implementation-log</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/09/2025-03-08-medication/">2025-03-08 medication</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/15/2025-02-15-DS/">2025-02-15-DS</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/29/2025-01-29-CV/">2025-01-29-CV</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">34</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-04-10T18:12:33.634Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Tlhey</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/whatever/js/utils.js"></script><script src="/whatever/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
