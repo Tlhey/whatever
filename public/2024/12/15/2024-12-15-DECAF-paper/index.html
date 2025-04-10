@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>2024-12-15-DECAF-paper | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Thesis:GAD inherently have imbalance data problem, normal representation learning have problem of (?), leads to bias towards minority groups, arousing fairness concern. Counterfactual fairness method">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-15-DECAF-paper">
+<meta property="og:url" content="http://example.com/2024/12/15/2024-12-15-DECAF-paper/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Thesis:GAD inherently have imbalance data problem, normal representation learning have problem of (?), leads to bias towards minority groups, arousing fairness concern. Counterfactual fairness method">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-12-16T00:49:52.000Z">
+<meta property="article:modified_time" content="2024-12-18T09:17:39.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2024-12-15-DECAF-paper" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/12/15/2024-12-15-DECAF-paper/" class="article-date">
+  <time class="dt-published" datetime="2024-12-16T00:49:52.000Z" itemprop="datePublished">2024-12-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      2024-12-15-DECAF-paper
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Thesis:<br>GAD inherently have imbalance data problem, normal representation learning have problem of (?), leads to bias towards minority groups, arousing fairness concern. Counterfactual fairness method helps improve.</p>
+<p>审稿人：</p>
+<ol>
+<li>Motivation: improve motivation</li>
+<li>Synthetic dataset: consider multi-valued or continuous sensitive attributes, need multi-valued or continuous sensitive attributes</li>
+<li>Evaluation: more dataset and method</li>
+<li>Ablation study of loss. </li>
+<li>Proof of SCM and formula.</li>
+</ol>
+<p>可以吧reddit twitter的dataset加上去，在很多GAD方法上的benchmark</p>
+<p>Intro:<br>Graph data is pervasive across numerous real-world applications, including social networks, financial systems, and healthcare. Detecting anomalous patterns within these graphs, known as Graph Anomaly Detection (GAD), has become a critical task due to its implications in areas such as fraud detection, network security, and medical diagnosis. Recent advancements in GAD models, particularly those applying Graph Neural Networks (GNNs), have demonstrated impressive performance in identifying anomalies by capturing complex structural and attribute-based patterns.</p>
+<p>However, GAD inherently faces the challenge of class imbalance, as anomalous instances are typically scarce compared to normal ones. This imbalance can hinder the model’s ability to accurately detect rare anomalies, leading to high false-negative rates where actual anomalies go unnoticed. In homogeneous node classification problems, popular methods to address class imbalance include oversampling the minority class, undersampling the majority class, and employing cost-sensitive learning strategies. Similarly, traditional GAD methods tackle data imbalance through techniques such as graph embedding, Variational Autoencoders (VAEs), and Generative Adversarial Networks (GANs), which aim to learn robust representations that can effectively distinguish between normal and anomalous nodes.</p>
+<p>Despite their effectiveness, representation learning approaches often introduce algorithmic biases against certain subpopulations within the graph. These biases can stem from the underlying data distribution, where specific groups may be underrepresented or possess distinct structural characteristics that the model inadvertently leverages to make biased predictions. Such biases raise significant fairness concerns, especially in sensitive domains like finance and healthcare. For instance, biased GAD models might disproportionately flag transactions from particular ethnic or socioeconomic groups as fraudulent in financial fraud detection systems. Similarly, in healthcare, biased anomaly detection could lead to the misidentification of treatment patterns for underrepresented populations, potentially resulting in delayed or denied care. Therefore, it is imperative to develop fair GAD methods that not only excel in anomaly detection performance but also mitigate biases to ensure equitable outcomes across all subpopulations.</p>
+<p>My question:</p>
+<ol>
+<li>怎么理解class imbalance: bias (容易对少数的class产生bias？) vs. 数据中含有sensitive feature的bias<br>imbalance:</li>
+</ol>
+<p>sens:<br>    (1) biases induced by one’s neighboring nodes and （NIFTY： <a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v161/agarwal21b%EF%BC%89">https://proceedings.mlr.press/v161/agarwal21b）</a><br>    (2) biases induced by the causal relations from the sensitive attributes to other features as<br>well as the graph structure. （<a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v151/agarwal22b.html%EF%BC%89">https://proceedings.mlr.press/v151/agarwal22b.html）</a></p>
+<p>Related Works:</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/12/15/2024-12-15-DECAF-paper/" data-id="cm9bnagpw0012zc3dcrgrhmhb" data-title="2024-12-15-DECAF-paper" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/12/20/2024-12-20-Tighnari/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2024-12-20-Tighnari
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/11/25/2024-11-25-About-me/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2024-11-25-About-me</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/" rel="tag">music</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/04/01/2025-04-01-Linux-server-proxy-issue/">2025-04-01-Linux-server-proxy-issue</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/01/2025-04-01-mt-implementation-log/">2025-04-01-mt-implementation-log</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/09/2025-03-08-medication/">2025-03-08 medication</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/15/2025-02-15-DS/">2025-02-15-DS</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/29/2025-01-29-CV/">2025-01-29-CV</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

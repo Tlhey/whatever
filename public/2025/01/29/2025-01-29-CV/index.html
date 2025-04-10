@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>2025-01-29-CV | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="我觉得教授说的很有道理。 First use simple cases as examples, then gradually increase the difficulty.For example the gradient descent. Use 2 * 2 as example, then others.  U-Net 论文阅读https:&#x2F;&#x2F;github.com&#x2F;zhixuhao&#x2F;unet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-01-29-CV">
+<meta property="og:url" content="http://example.com/2025/01/29/2025-01-29-CV/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我觉得教授说的很有道理。 First use simple cases as examples, then gradually increase the difficulty.For example the gradient descent. Use 2 * 2 as example, then others.  U-Net 论文阅读https:&#x2F;&#x2F;github.com&#x2F;zhixuhao&#x2F;unet">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image.png">
+<meta property="og:image" content="http://example.com/2025-01-29-CV/image.png">
+<meta property="og:image" content="http://example.com/2025-01-29-CV/image-2.png">
+<meta property="article:published_time" content="2025-01-29T21:02:37.000Z">
+<meta property="article:modified_time" content="2025-04-08T21:40:43.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2025-01-29-CV" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/29/2025-01-29-CV/" class="article-date">
+  <time class="dt-published" datetime="2025-01-29T21:02:37.000Z" itemprop="datePublished">2025-01-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      2025-01-29-CV
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>我觉得教授说的很有道理。 First use simple cases as examples, then gradually increase the difficulty.<br>For example the gradient descent. Use 2 * 2 as example, then others. </p>
+<h2 id="U-Net-论文阅读"><a href="#U-Net-论文阅读" class="headerlink" title="U-Net 论文阅读"></a>U-Net 论文阅读</h2><p><a target="_blank" rel="noopener" href="https://github.com/zhixuhao/unet">https://github.com/zhixuhao/unet</a></p>
+<h3 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h3><p>Image segmentation: assign every pixel a label \</p>
+<h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>Previous method:</p>
+<ul>
+<li>Ciresan et al. : Purely CNN (?)<ul>
+<li>slow: redundancy of patches</li>
+<li>trade-off between localization accuracy and the use of context</li>
+</ul>
+</li>
+</ul>
+<h3 id="Propose-method"><a href="#Propose-method" class="headerlink" title="Propose method:"></a>Propose method:</h3><h2 id="Fully-CN-pooling-op-are-replaced-by-upsampling-op-increase-the-resolution"><a href="#Fully-CN-pooling-op-are-replaced-by-upsampling-op-increase-the-resolution" class="headerlink" title="Fully CN:-  pooling op are replaced by upsampling op:  increase the resolution"></a>Fully CN:<br>-  pooling op are replaced by upsampling op:  increase the resolution</h2><h2 id="excessive-Date-Augmentation-elastic-deformation"><a href="#excessive-Date-Augmentation-elastic-deformation" class="headerlink" title="(excessive) Date Augmentation: elastic deformation"></a>(excessive) Date Augmentation: elastic deformation</h2><h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><ul>
+<li>Pixel error: compare 2 pic</li>
+<li>Rand Error</li>
+</ul>
+<h2 id="期末"><a href="#期末" class="headerlink" title="期末"></a>期末</h2><p>吗的，没有认真听过一节课。我真恶心。<br>以下是期末复习计划： 1.先把所有的作业看懂。然后理一下作业里的知识点和公式。不能带cheatsheeet所以玩啦<br>cv复习技巧</p>
+<ol>
+<li>以作业为主。把作业每题都手作一遍。</li>
+<li>看讲义。讲义里很多重要的公式（不要看太细，重点看作业里出现的）</li>
+<li>考完试把cv的作业都补一遍。</li>
+</ol>
+<p>感觉要考quiz的原题。可能要看一遍，不然这门课就完了。<br>复习微积分，线性代数。</p>
+<h2 id="hw-1"><a href="#hw-1" class="headerlink" title="hw 1"></a>hw 1</h2><p>exam style problem:<br>1, 2, 3.1</p>
+<h3 id="1-cor-conv"><a href="#1-cor-conv" class="headerlink" title="1. cor&#x2F;conv"></a>1. cor&#x2F;conv</h3><p>Correlation:<br>correlation coefficient<br>correlation formula at position $i &#x3D; \sum_{j&#x3D;0}^{k-1} I[i + j] \cdot H[j]$</p>
+<p>convolution:$i &#x3D; \sum_{j&#x3D;0}^{k-1} I[i - j] \cdot H[j]$<br>full&#x2F;valid&#x2F;same<br>大小 valid &lt; same &lt; full</p>
+<h3 id="2-smoothing"><a href="#2-smoothing" class="headerlink" title="2. smoothing"></a>2. smoothing</h3><p>gaussian(u, v) &#x3D;def&#x3D; e…<br>seperability与简便计算</p>
+<h3 id="2-differentiation"><a href="#2-differentiation" class="headerlink" title="2. differentiation"></a>2. differentiation</h3><h4 id="def"><a href="#def" class="headerlink" title="def"></a>def</h4><p>区分<br>finite difference: $I_c(r, c) \approx I(r, c + 1) - I(r, c)$<br>central difference: $I_c(r, c) \approx \frac{I(r, c+1) - I(r, c-1)}{2}$</p>
+<h4 id="sobel-filter"><a href="#sobel-filter" class="headerlink" title="sobel filter"></a>sobel filter</h4><p>不要忘记系数啊。。。（normalize系数可以保证亮度正常<br>smoothing $s &#x3D;\frac{1}{4} \begin{bmatrix} 1, 2, 1 \end{bmatrix}^T$<br>differentiation: $d &#x3D;\frac{1}{2} \begin{bmatrix} 1, 0, -1 \end{bmatrix}^T $<br>$v&#x3D;s^Td, h&#x3D;d^Ts$</p>
+<p>sepearable<br><img src="/image.png" alt="alt text">晕</p>
+<h3 id="3-interpolation-x"><a href="#3-interpolation-x" class="headerlink" title="3. interpolation(x)"></a>3. interpolation(x)</h3><p>点的权重为对角正方形的面积<br>bilinear;<br>$\delta a &#x3D; a - \lfloor a \rfloor$, $\delta b &#x3D; b - \lfloor b \rfloor$<br>$\begin{aligned}<br>I(a,b) &amp;&#x3D; I(\lfloor a \rfloor, \lfloor b \rfloor)(1 - \delta a)(1 - \delta b) \<br>&amp;+ I(\lfloor a \rfloor, \lfloor b \rfloor + 1)(1 - \delta a)\delta b \<br>&amp;+ I(\lfloor a \rfloor + 1, \lfloor b \rfloor)\delta a(1 - \delta b) \<br>&amp;+ I(\lfloor a \rfloor + 1, \lfloor b \rfloor + 1)\delta a\delta b<br>\end{aligned}$</p>
+<h2 id="hw-2"><a href="#hw-2" class="headerlink" title="hw 2"></a>hw 2</h2><p>exam problem:<br>1.1 - 1.8 ， 3.1， 4.1<br>给f(x, y)<br>1.1. 求gradient $\nabla f&#x3D;$<br>1.2 stationary point 判定(local max&#x2F;min&#x2F;saddle) D&#x3D; f_xx * f_yy-f_xy^2<br>1.3 ordinary gradient descent<br>1.4 gradient descent with momentum<br>1.5 step of Newton’s method<br>1.6 1. 哪个离真实值更近2. Gauss-Newton method 是否可用<br>1.7 GD的convergence point<br>1.8 数值精度是否影响收敛</p>
+<p>3.1 SGD 手算<br>一个数据点？</p>
+<p>4.1<br>SG和batch</p>
+<p>concepts<br>jacobian: 一阶导, hessian: 二阶导</p>
+<h3 id="notation"><a href="#notation" class="headerlink" title="notation:"></a>notation:</h3><p>risk function(给定f(x)) &#x3D; loss function(未知fx？)<br>first-order gradient descent 只是近似<br>    how to derive step size $\alpha_k$<br>        fix<br>        adam?<br>        momentum<br>    how to determine the local min<br>        line search<br>    terminaltion check<br>    SGD<br>        mini batch average<br>        epoch<br>second-order<br>    Newton’s method<br>        Hessian<br>        positive-definite: asymptotically faster convergence<br>    Newton-Raphson method:<br>        f shuold be convex</p>
+<h3 id="formula"><a href="#formula" class="headerlink" title="formula"></a>formula</h3><p>$\nabla f(x,y)&#x3D; \begin{bmatrix}\frac{\partial f}{\partial x}\[6pt]\frac{\partial f}{\partial y}\end{bmatrix}$</p>
+<p>$H_f(x,y)&#x3D;\begin{bmatrix}\frac{\partial^2 f}{\partial x^2} &amp; \frac{\partial^2 f}{\partial x\partial y}\[6pt]\frac{\partial^2 f}{\partial y\partial x} &amp; \frac{\partial^2 f}{\partial y^2}\end{bmatrix}$</p>
+<p>$p_{k+1} &#x3D; \mu p_k - \alpha_k \nabla f(x_k)$<br>$x_{k+1} &#x3D; x_k + p_{k+1}$<br>$x_k$是位置，$p_k$是momentum，$\alpha_k$是步长，$\nabla f(x_k)$是梯度，<br>since starts with zero velocity,$p_0&#x3D;0$</p>
+<p>$\phi_n$ loss, risk &#x3D; loss function</p>
+<p>$f(\mathbf{z})$ risk<br>$\mathbf{g}_0&#x3D;\nabla f(\mathbf{z}_0)$ gradient<br>$H(\mathbf{z}_0)$ curvature of f near z0<br>$H(\mathbf{z}<em>0) &#x3D; \left[ \frac{\partial^2 f}{\partial z_i \partial z_j} \right]</em>{\mathbf{z} &#x3D; \mathbf{z}_0}$</p>
+<p>Newton Method<br>$f(\mathbf{z}) \approx f(\mathbf{z}_0) + \nabla f(\mathbf{z}_0)^T (\mathbf{z} - \mathbf{z}_0) + \frac{1}{2} (\mathbf{z} - \mathbf{z}_0)^T H(\mathbf{z}_0) (\mathbf{z} - \mathbf{z}_0)$</p>
+<p>$H_0 \Delta \mathbf{z}_0 &#x3D; -\mathbf{g}_0<br>\Rightarrow<br>\Delta \mathbf{z}_0&#x3D;z-z_0 &#x3D; - H_0^{-1} \mathbf{g}_0$</p>
+<p>Newton-rapthon<br>$f(\mathbf{z}) &#x3D; \sum_{n&#x3D;1}^{N} \phi_n^2(\mathbf{z})$</p>
+<h2 id="hw3"><a href="#hw3" class="headerlink" title="hw3"></a>hw3</h2><p>1    2.1-2    3.1<br>1.1 求矩阵row&#x2F;null space的unit vector<br>1.2 x使x^2最小<br>1.3 求x解集<br>1.5 bcce 待公式<br>1.6 Lucas-Kanade tracker</p>
+<h3 id="concept"><a href="#concept" class="headerlink" title="concept"></a>concept</h3><h4 id="BCCE的前提假设"><a href="#BCCE的前提假设" class="headerlink" title="BCCE的前提假设"></a>BCCE的前提假设</h4><p>如果一个点在现实世界中移动，它的亮度在图像中是不会变的<br>公式表达；$a(t) &#x3D; e(x(t), t)\Rightarrow \frac{da(t)}{dt} &#x3D; 0$<br><img src="/2025-01-29-CV/image.png" alt="alt text"><br>$\frac{d}{dt} a(t) &#x3D; 0<br>\Rightarrow<br>\frac{\partial e}{\partial x^T} \cdot \frac{dx}{dt} + \frac{\partial e}{\partial t} &#x3D; 0$</p>
+<p>u: image velocity<br>$\delta x$ displacemen<br>u&#x3D;$\delta x &#x2F; \delta t$, $\delta t \to\infty$</p>
+<p>$u\nabla e(x)&#x2F;|\nabla e(x)|$<br>normal component $\nu &#x3D;def&#x3D;n(x)^{\top}u(x)$</p>
+<h4 id="apreture-probelm"><a href="#apreture-probelm" class="headerlink" title="apreture probelm"></a>apreture probelm</h4><p>BCCE是标量方程， $u &#x3D; (u_x, u_y)^T$是二维，所以只能知道u的方向…<br>Motion Field	真实世界中物体运动在图像上的投影（我们想知道的）<br>Optical Flow	我们从图像中通过亮度变化估计到的速度（我们能观测到的）<br>$\nu(x) &#x3D; \mathbf{n}(x)^T u(x)$ 提督方向*<br>$\nu(x)$ 某个pixel速度沿着这个方向的“可观测分量”。<br>只能知道u的方向。<br>the normal compenet of motion $\nu$</p>
+<p>因为们不能只靠一个像素就估计出完整的运动向量，所以用一个整体的方法去估计图像中所有像素的运动向量（光流）Optical flow<br>1 data term: $E_\text{data} &#x3D; \sum_{x} \left( \frac{\partial e}{\partial x} \cdot u(x) + \frac{\partial e}{\partial t} \right)^2$满足BCCE function<br>2 smoothness term: $E_\text{smooth} &#x3D; \sum_{x} \left( \frac{\partial u_x}{\partial x} + \frac{\partial u_y}{\partial y} \right)^2$<br>$E &#x3D; \lambda E_\text{data} + (1 - \lambda) E_\text{smooth}$<br>可能的缺点Tend to blur the solution near motion boundaries</p>
+<h4 id="Local-support-motion-estimation-using-tracking-windows"><a href="#Local-support-motion-estimation-using-tracking-windows" class="headerlink" title="Local support motion estimation (using tracking windows)"></a>Local support motion estimation (using tracking windows)</h4><p>x是二维坐标$x \in \mathbb{R}^2$, f(x), g(x)是两幅图像<br>我们把一个local的小窗口看作一个整体, 从x_f移动到x_g&#x3D;x_f+d, 对应的图像是f(x_f)和g(x_f+d),枚举周围的x，计算平方loss，权重和距离有关 w(x-x_f)<br>$W(x_f)$是个集合&#x3D;{pixel in window}<br>$w(x) &#x3D; \begin{cases}1 &amp; \text{if } |x_1| \le h \text{ and } |x_2| \le h \0 &amp; \text{otherwise}\end{cases}$只是定义窗口时2h+1 ^2的小正方形</p>
+<p>高斯，只是换种w<br>$w(x) \propto \begin{cases}e^{- \frac{1}{2} \left( \frac{|x|}{\sigma} \right)^2 } &amp; \text{if } |x_1| \le h, |x_2| \le h \0 &amp; \text{otherwise}\end{cases}$</p>
+<ol>
+<li>grid search x</li>
+<li>Lucas-kanade tracker(using Newton-Raphson)<br>Goal<br> find d that min $L(\mathbf{d}) &#x3D; \sum_x [g(x + \mathbf{d}) - f(x)]^2 w(x - x_f)$ <br> 线性近似$g(x + \mathbf{d}) \approx g(x) + \nabla g(x)^T \mathbf{d}$<br> $L(\mathbf{d}) \approx \mathbf{d}^T A \mathbf{d} - 2 \mathbf{b}^T \mathbf{d} + \text{const}$<br> L’(d)&#x3D;0得到$A \mathbf{d} &#x3D; \mathbf{b}$<br> 因为是近似的，我们不能一次算出真正的$\mathbf{d}^*$</li>
+</ol>
+<p>详细计算(感觉这里写的不对，应该改一下推导过程…)<br>$L(\mathbf{d}) \approx \sum_x \left[\nabla g(x)^T \mathbf{d} + g(x) - f(x)\right]^2 w(x - x_f)$<br>$L(\mathbf{d}) &#x3D; \mathbf{d}^T A \mathbf{d} - 2 \mathbf{b}^T \mathbf{d} + \text{const}$<br>$A &#x3D; \sum_x \nabla g(x) \nabla g(x)^T w(x - x_f)$<br>$\mathbf{b} &#x3D; \sum_x \nabla g(x) [f(x) - g(x)] w(x - x_f)$<br>$\nabla g(x) \in \mathbb{R}^2$, $\nabla g(x) \nabla g(x)^T$是2x2的矩阵，$A \in \mathbb{R}^{2 \times 2}$整个窗口中这些小矩阵的加权和, $\mathbf{b} \in \mathbb{R}^2$整个窗口中这些小矩阵{梯度和误差的加权}求和</p>
+<p>为什么不解$A \mathbf{d} &#x3D; \mathbf{b}$， 而是迭代： 因泰勒一阶近似要d很小。但是因为离散，d相对大。<br>为什么双线性插值？因为Gauss-Newton得到的d*可能小数。<br>复习一下Gauss-Newton:<br>    <a target="_blank" rel="noopener" href="https://chatgpt.com/c/67f2aa07-57a4-8002-a98f-851def653450">https://chatgpt.com/c/67f2aa07-57a4-8002-a98f-851def653450</a></p>
+<p>头晕，不学了。<br>large motio用pyramid track<br>bcce，和motion track的所有问题 <a target="_blank" rel="noopener" href="https://chatgpt.com/c/67f1a7c8-8c80-8002-a3cc-0b2b4e14f4fe">https://chatgpt.com/c/67f1a7c8-8c80-8002-a3cc-0b2b4e14f4fe</a></p>
+<h2 id="hw4"><a href="#hw4" class="headerlink" title="hw4"></a>hw4</h2><h4 id="4-Rrigid-Geo-transf"><a href="#4-Rrigid-Geo-transf" class="headerlink" title="4 Rrigid Geo transf"></a>4 Rrigid Geo transf</h4><p>忘记的线代：<br>dot prod&#x2F; Proj<br>$a^Tb&#x3D;ab\cos\theta$, $a^Tb&#x3D;0 \iff a\perp b$<br><img src="/2025-01-29-CV/image-2.png" alt="alt text"><br>$\text{proj}_{\mathbf{a}} \mathbf{v} &#x3D; \frac{\mathbf{a}^T \mathbf{v}}{\mathbf{a}^T \mathbf{a}} \mathbf{a}$</p>
+<p>$P^x&#x3D;P$ 几何，投影。</p>
+<p>cross prod<br>右手系为正<br>$|\mathbf{c}| &#x3D; |\mathbf{a} \times \mathbf{b}| &#x3D; |\mathbf{a}||\mathbf{b}| \sin\theta$ 平行四边形面积<br>$[\mathbf{a}]_\times &#x3D; \begin{bmatrix}<br>0 &amp; -a_z &amp; a_y \<br>a_z &amp; 0 &amp; -a_x \<br>-a_y &amp; a_x &amp; 0<br>\end{bmatrix}$<br>$\mathbf{a} \times \mathbf{p} &#x3D; [\mathbf{a}]_\times \mathbf{p}$</p>
+<p>triple product<br>$\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c})$ abc平行六边形体积</p>
+<p>coord translation<br>太有趣了但是看不懂呜呜，里面的数学（应该是矩阵论）是我想学的数学，虽然学数学的不会叫这个数学 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/508149559">https://zhuanlan.zhihu.com/p/508149559</a></p>
+<p>从0-&gt;1， 左上角left superscript 是system index, 0 is omitted as world ref sys $S_0$</p>
+<h4 id="4-pinhole-camera-model"><a href="#4-pinhole-camera-model" class="headerlink" title="4 pinhole camera model"></a>4 pinhole camera model</h4><p>pinhole小孔&#x2F; optical axis穿过pinhole垂直于成像面的线&#x2F; (projection ray)&#x2F;image plane（成像的面）<br>trade off between sharp and bright<br>（把pinhole可以是面积圆，不影响，还会变亮（？<br>倒像是实像，但是可以等价成对应的虚像。就等价成pinhole camera model 啦<br>于是pinhole-&gt;center of projection,成像面(front screen)对称过去的是image plane,<br>principal plane </p>
+<p>pixel image coordinate system 左上角为原点 $(\xi, \mu)$<br>camera reference system P 在center of proj sys坐标中的位置$P&#x3D;(X, Y, Z)$, Z is called depth<br>canonical image coordinate system $(x, y), x&#x3D;X, y&#x3D;Y$</p>
+<p>在写法中$(\xi, \mu)$会表示 image pixel 为单位，$(x, y)$会表示canonical中 sys的坐标，单位mm<br>例如:<br>principal point $\pi_0&#x3D;(\xi_0, \mu_0)$, scaling factor $s_x, s_y$ pixel per mm<br>$(\xi , \mu)&#x3D; (s_x x + \xi_0, s_y y + \mu_0)$<br>$x&#x2F;f&#x3D;X&#x2F;Z$, $y&#x2F;Z&#x3D;Y&#x2F;Z$</p>
+<p>$\boldsymbol{\xi} &#x3D; K_s \mathbf{p} + \boldsymbol{\pi}_0$<br>不想看了， 好烦 <a target="_blank" rel="noopener" href="https://chatgpt.com/c/67f2c6fa-1284-8002-b9a3-7b967317097a">https://chatgpt.com/c/67f2c6fa-1284-8002-b9a3-7b967317097a</a></p>
+<h4 id="epipolar-geo"><a href="#epipolar-geo" class="headerlink" title="epipolar geo"></a>epipolar geo</h4><p>epipolar plane, baseline, image plane, （book是epi plane的旋转轴，比喻成书脊）</p>
+<p>已知条件：<br>不妨以相机a构建坐标系$P_a&#x3D;(0,0,0)$,朝向为$D_a&#x3D;\mathbf I_{3\times3}$, $I_a:z&#x3D;f$, $P&#x3D;(X, Y, Z)$, camera b 的位置 $^at_b$, 旋转矩阵$^aR_b$</p>
+<p>可以求：<br>可以得到相机b的朝向是$^aR_b D_a &#x3D; D_b$， 位置是$^at_b$，<br>是$I_a$和AP连线的焦点A&#x3D;(0, 0, 0), $I_b$也是已知的,<br>方程类是$kRx-f&#x3D;0$, k&#x3D;[0, 0, 1],<br>BP的方程是，令kR&#x3D;[u, v, w], 则BP为$L(d)&#x3D;t+d (kR)^T$,<br>ABP方程是$[t]_\times (X, Y, Z)&#x3D;0$,<br>$^ap_a$: 联立 z&#x3D;f和[X, Y, Z][x, y, z]^T&#x3D;0,<br>$^ap_b$同理已知，$^bp_b&#x3D;R (^ap_b-t)$</p>
+<p>求I_b方程的过程:<br>$^aI_b$的方程: $z&#x3D;f$,既  $k^b\vec{x}$+d&#x3D;0，k&#x3D;[0, 0, 1]<br>带入点(0, 0, f)得$d&#x3D;-f$。<br>$^aR_a \ ^a \vec{x}&#x3D; ^b\vec{x}$， 带入上式得$kR^a \vec{x}+d&#x3D;0$</p>
+<p>但是讲义上不是这么推的, 0个人关心proj center A, B在哪， 其实是有的…, t是相对位置。<br>给定$a&#x3D;{}^a p_a &#x3D; \begin{bmatrix} x_a \ y_a \ f \end{bmatrix},\quad<br>b&#x3D;{}^b p_b &#x3D; \begin{bmatrix} x_b \ y_b \ f \end{bmatrix}$, 已知a, b, R, t, e&#x3D;$^ae_b$是baseline和$I_a$的交点。</p>
+<p>根据几何变换有以下成立，<br>$R^T&#x3D;\ ^bR_a$,<br>因为根据逆变换$ ^aR_b\  ^bR_a^T$,即 $RR^T&#x3D;I$</p>
+<p>$Rt&#x3D;-^bt_a$, 因为左&#x3D;右&#x3D; $^b \vec {AB}$</p>
+<p>在sys A中,<br>$R^Tb&#x3D;\ ^ap_b$，因为$^bR_a \ ^bp&#x3D;\ ^ap-^at_b$,所以令p&#x3D;camera b， $^bR_a \ ^bp_b&#x3D;\  ^ap_b-^at_b$ 左边是$R^Tb$， 右边是sys a下的<br>$a&#x3D;\ ^ap_a$<br>令sys的A的原点为$O_A$， 这个式子就是$O_A A\cdot (O_AB\times BA)&#x3D;0$<br>$O_AB+BA&#x3D;O_AA$带入检查得到$R^Tb&#x3D;a-^at_b$<br>两边同乘$R$得到$b&#x3D;R(a-t)$不符合$^bp&#x3D;R(^ap-t)$ ？？？</p>
+<p>epipoplar constrain $b^TEa&#x3D;0$, where $E&#x3D;R[t]_\times$</p>
+<p>Qestions<br>思考方式； 这里一共说了几个概念，几个公式，概念之间的逻辑什么，变量的定义和维度是什么</p>
+<ol>
+<li>GD在&gt;&#x3D;1数据的时候咋（back prop）更新的啊</li>
+<li>好难理解为什么“如果一个点在真实世界中运动，它在图像中的亮度值是不会变的”这个假设会得到$ \frac{d}{dt} e(x(t), t) &#x3D; 0$<br>虽然可以解释$e$是亮度，是关于位置向量$x$和时间$t$的函数，但是为什么$e$对$t$求导&#x3D;0.  $e$的含义是什么…任意一个符合”亮度不变的点”的亮度…?<br>哪个点?图像中的还是世界里的。图像中的点。其实感觉条件应该说成“任意真实世界的点，在图像中的像亮度不变”。这样好像可以理解。x,t也是图像中的位置和时间。</li>
+</ol>
+<p>可能误解的原因是总觉得图像是离散的pixel,现实世界是连续的，所以潜意识里出现了更多的变量，导致感觉条件不完全。<br>3. </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/29/2025-01-29-CV/" data-id="cm9bnagt0001xzc3d69qehcym" data-title="2025-01-29-CV" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/02/15/2025-02-15-DS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2025-02-15-DS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/01/09/2025-01-11-NLP/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2025-01-11-NLP</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/" rel="tag">music</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/04/01/2025-04-01-Linux-server-proxy-issue/">2025-04-01-Linux-server-proxy-issue</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/01/2025-04-01-mt-implementation-log/">2025-04-01-mt-implementation-log</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/09/2025-03-08-medication/">2025-03-08 medication</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/15/2025-02-15-DS/">2025-02-15-DS</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/29/2025-01-29-CV/">2025-01-29-CV</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
