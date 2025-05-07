@@ -45,18 +45,6 @@
 [data-theme='dark'] .top-img {
   filter: brightness(0.8);
 }
-#archive,
-#tag,
-#category,
-.page {
-  padding-top: 0 !important;
-}
-#archive .page-title,
-#tag .page-title,
-#category .page-title,
-.page .page-title {
-  margin-top: 0 !important;
-}
 #footer:before {
   background-color: rgba(255,255,255,0.5);
 }
