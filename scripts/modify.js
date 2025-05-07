@@ -2,28 +2,28 @@
 const { filter } = hexo.extend;
 const cheerio = require('cheerio');
 
-/**
- * Insert the top image on all pages
- * @param {cheerio.Root} $ Root element of the page
- */
-function insertTopImg($) {
-    const header = $('#page-header');
-    if (header.length === 0) return;
-
-    const background = header.css('background-image');
-    if (!background) return;
-
-    // Selectors covering home, pagination, post, archive, tag, category, and custom pages
-    $('#post, #page, #archive, #tag, #category, .page').prepend(
-        `<div class="top-img" style="background-image: ${background};"></div>`
-    );
+// helper: grab inline background‑image from #page-header
+function getBg(header) {
+  const style = header.attr('style') || '';
+  const m = /background-image:\s*([^;]+)/i.exec(style);
+  return m ? m[1] : null;
 }
 
-// Modify HTML after rendering
-filter.register('after_render:html', (str, data) => {
-    const $ = cheerio.load(str, {
-        decodeEntities: false
-    });
-    insertTopImg($);
-    return $.html();
+function insertTopImg($) {
+  const header = $('#page-header');
+  if (header.length === 0) return;
+
+  const bg = getBg(header);
+  if (!bg) return;                         // nothing to copy
+
+  // work for posts, pages, archives, tags, categories
+  $('#post, #page, #archive, #tag, #category, .page').prepend(
+    `<div class="top-img" style="background-image:${bg};"></div>`
+  );
+}
+
+filter.register('after_render:html', str => {
+  const $ = cheerio.load(str, { decodeEntities: false });
+  insertTopImg($);
+  return $.html();
 });

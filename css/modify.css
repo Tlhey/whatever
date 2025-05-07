@@ -1,3 +1,4 @@
+/* universal banner inside every content box */
 .top-img {
   height: 250px;
   margin: -50px -40px 50px;
@@ -20,9 +21,11 @@
 [data-theme='dark'] .top-img {
   filter: brightness(0.8);
 }
+/* make the whole header see‑through only on the home & its pagination */
 #page-header:not(.post-bg) {
   background: transparent !important;
 }
+/* keep article pages opaque so their own banner is visible */
 #page-header.post-bg {
   height: 280px !important;
   background-size: cover !important;
