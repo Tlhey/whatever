@@ -1,4 +1,28 @@
-/* universal banner inside every content box */
+#page-header {
+  background-color: rgba(255,255,255,0.1) !important;
+}
+#page-header.post-bg,
+#page-header.not-home-page {
+  height: 400px !important;
+}
+#page-header #post-info {
+  bottom: 100px !important;
+  text-align: center;
+}
+#page-header #page-site-info {
+  top: 140px !important;
+}
+@media screen and (max-width: 768px) {
+  #page-header.not-home-page {
+    height: 200px !important;
+  }
+  #page-header #post-info {
+    bottom: 10px !important;
+  }
+  #page-header #page-site-info {
+    top: 100px !important;
+  }
+}
 .top-img {
   height: 250px;
   margin: -50px -40px 50px;
@@ -12,7 +36,7 @@
   -ms-transition: all 0.3s;
   transition: all 0.3s;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .top-img {
     height: 230px;
     margin: -36px -14px 36px;
@@ -21,30 +45,22 @@
 [data-theme='dark'] .top-img {
   filter: brightness(0.8);
 }
-/* make the whole header see‑through only on the home & its pagination */
-#page-header:not(.post-bg) {
-  background: transparent !important;
+#footer:before {
+  background-color: rgba(255,255,255,0.3);
 }
-/* keep article pages opaque so their own banner is visible */
-#page-header.post-bg {
-  height: 280px !important;
-  background-size: cover !important;
+[data-theme='dark'] #footer:before {
+  background-color: rgba(0,0,0,0.5);
 }
-#page-header.post-bg #post-info {
-  bottom: 40px !important;
-  text-align: center;
+#footer-wrap,
+#footer-wrap a {
+  color: #111;
+  -webkit-transition: unset;
+  -moz-transition: unset;
+  -o-transition: unset;
+  -ms-transition: unset;
+  transition: unset;
 }
-#page-header.post-bg #page-site-info {
-  top: 140px !important;
-}
-@media screen and (max-width: 768px) {
-  #page-header.post-bg {
-    height: 200px !important;
-  }
-  #page-header.post-bg #post-info {
-    bottom: 10px !important;
-  }
-  #page-header.post-bg #page-site-info {
-    top: 100px !important;
-  }
+[data-theme='dark'] #footer-wrap,
+[data-theme='dark'] #footer-wrap a {
+  color: var(--light-grey);
 }
